@@ -10,6 +10,13 @@ Once GitHub Pages is enabled, launch:
 
 Open that URL in Chrome, allow it to fully load, then use the Chrome menu **⋮ → Install app**. Do **not** install from a temporary `127.0.0.1` local preview.
 
+## Mobile alignment guides (V5.2)
+
+- The mint **Center** line is now intentionally subtle; it marks the sprite's horizontal center, not the middle of the character.
+- The amber **Feet baseline** line is independent and labeled with its Y pixel coordinate. For directional monsters it follows the Down-facing sprite's lowest opaque pixel.
+- Tap the two guide chips under the canvas to turn either line on or off. Both options also appear under **Menu → Tools & settings → Canvas overlays**. Settings are remembered on the current device.
+- The mobile drawing tools are a **single horizontally swipeable row**, with colors immediately below, to leave more space for art.
+
 ## Features
 
 - Seven editable monster starters (rat, slime, bat, goblin, skeleton, golem, spider)
