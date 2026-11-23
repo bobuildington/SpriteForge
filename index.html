@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>SpireWrought Sprite Forge V5.2 — Mobile Guides</title>
+<title>SpireWrought Sprite Forge V5.3 — Monster-Aware Builder</title>
 <meta name="theme-color" content="#101923">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -73,7 +73,7 @@
 <div class="app">
 <header class="topbar">
 <div class="brand"><div class="emblem">✦</div><div><div class="eyebrow">SpireWrought • Creation Tools</div><h1>Sprite <span>Forge</span></h1></div></div>
-<div class="top-actions"><span class="chip">32 × 32 · V5</span><input class="field project-name" id="projectName" aria-label="Monster/project name" value="Tower Rat"><button class="btn soft" id="openBuilderTop">✦ Builder</button><button class="btn" id="openLibraryTop">▦ Library</button><button class="btn" id="openRecolorTop">◉ Recolor</button><button class="btn" id="openUnityTop">↓ Unity ZIP</button><button class="btn" id="newProject">+ Blank monster</button><button class="btn" id="loadProject">Open project</button><button class="btn primary" id="saveProject">Save project ↓</button><button class="btn small" id="recoverLegacy" hidden title="Restore the previous version’s local autosave">Recover V1 autosave</button><input id="loadProjectFile" hidden type="file" accept="application/json,.json"></div>
+<div class="top-actions"><span class="chip">32 × 32 · V5.3</span><input class="field project-name" id="projectName" aria-label="Monster/project name" value="Tower Rat"><button class="btn soft" id="openBuilderTop">✦ Builder</button><button class="btn" id="openLibraryTop">▦ Library</button><button class="btn" id="openRecolorTop">◉ Recolor</button><button class="btn" id="openUnityTop">↓ Unity ZIP</button><button class="btn" id="newProject">+ Blank monster</button><button class="btn" id="loadProject">Open project</button><button class="btn primary" id="saveProject">Save project ↓</button><button class="btn small" id="recoverLegacy" hidden title="Restore the previous version’s local autosave">Recover V1 autosave</button><input id="loadProjectFile" hidden type="file" accept="application/json,.json"></div>
 </header>
 <div id="mobileHeader" class="mobile-header">
  <button class="btn mobile-icon" id="mobileChooseMonster" aria-label="Choose starter monster">◈ <span>Monsters</span></button>
@@ -131,18 +131,27 @@
  </div></dialog>
 
 <dialog id="builderDialog" class="forge-modal v5-modal" aria-labelledby="builderTitle"><div class="dialog-top"><div><div class="modal-eyebrow">SPRITE FORGE / DESIGN STUDIO</div><h2 id="builderTitle">Monster Builder</h2></div><button class="btn small close-modal" id="closeBuilder" aria-label="Close monster builder">✕</button></div>
-<p>Design all four directions together, then create editable pixel sprites. Regenerating replaces your current monster; manual edits can always be saved in the library first.</p>
+<p>Design all four directions together, then create editable pixel sprites. The builder now adapts to each monster type, so slimes get body-and-face controls instead of head, ear, and horn controls.</p>
 <div class="builder-layout"><div class="builder-form"><label>Monster species<select class="field" id="builderSpecies"><option value="rat">Tower Rat</option><option value="slime">Moss Slime</option><option value="bat">Cave Bat</option><option value="goblin">Goblin Scout</option><option value="skeleton">Bone Soldier</option><option value="golem">Stone Golem</option><option value="spider">Venom Spider</option></select></label>
-<label>Body shape<select class="field" id="builderBody"><option value="slim">Lean</option><option value="normal" selected>Standard</option><option value="broad">Sturdy</option></select></label>
-<label>Head size<select class="field" id="builderHead"><option value="small">Small</option><option value="normal" selected>Standard</option><option value="large">Large</option></select></label>
-<label>Head profile<select class="field" id="builderProfile"><option value="normal" selected>Natural</option><option value="round">Round</option><option value="wedge">Angular</option></select></label>
-<label>Ear shape<select class="field" id="builderEars"><option value="natural" selected>Natural</option><option value="large">Large</option><option value="pointed">Pointed</option></select></label>
-<label>Horns / spikes<select class="field" id="builderHorns"><option value="none" selected>None</option><option value="short">Short</option><option value="long">Tall</option></select></label>
-<label>Eyes<select class="field" id="builderEyes"><option value="original" selected>Original</option><option value="red">Crimson</option><option value="gold">Gold</option><option value="cyan">Cyan</option></select></label>
-<label>Adornment<select class="field" id="builderAccent"><option value="none" selected>None</option><option value="collar">Neck band</option><option value="spots">Markings</option><option value="spines">Spines</option></select></label>
-<label>Color variant<select class="field" id="builderTint"><option value="original" selected>Original colors</option><option value="frost">Frost</option><option value="ember">Ember</option><option value="venom">Venom</option><option value="violet">Violet</option><option value="ash">Ash</option></select></label>
-<label>Name for new monster<input class="field" id="builderName" maxlength="80" value="Tower Rat Variant"></label></div>
-<div class="builder-visual"><div class="four-mini-grid" id="builderPreview" aria-label="Four generated directional sprite previews"></div><p class="small-muted">Changes update all four facings together. Preview shown at pixel-art zoom.</p></div></div>
+<div class="builder-mode" aria-label="Builder detail level"><button type="button" class="btn small active" id="builderBasicMode" aria-pressed="true">Basic</button><button type="button" class="btn small" id="builderAdvancedMode" aria-pressed="false">Advanced</button></div>
+<div class="builder-help" id="builderHelp">Pick a monster type to load the right controls.</div>
+<div class="builder-group"><h3>Body</h3><span class="hint">Core shape controls for this monster.</span>
+<label data-builder-control="body">Body shape<select class="field" id="builderBody"><option value="slim">Lean</option><option value="normal" selected>Standard</option><option value="broad">Sturdy</option></select></label>
+<label data-builder-control="head">Head size<select class="field" id="builderHead"><option value="small">Small</option><option value="normal" selected>Standard</option><option value="large">Large</option></select></label>
+<label data-builder-control="profile">Head / top profile<select class="field" id="builderProfile"><option value="normal" selected>Natural</option><option value="round">Round</option><option value="wedge">Angular</option></select></label>
+<label data-builder-control="slimeBody">Slime body<select class="field" id="builderSlimeBody"><option value="round" selected>Round blob</option><option value="tall">Tall blob</option><option value="puddle">Puddle blob</option></select></label>
+<label data-builder-control="slimeSurface">Slime surface<select class="field" id="builderSlimeSurface"><option value="smooth" selected>Smooth</option><option value="drippy">Drippy</option><option value="wobble">Wobbly top</option></select></label></div>
+<div class="builder-group"><h3>Face & features</h3><span class="hint">Shown only when a species can actually use them.</span>
+<label data-builder-control="ears">Ear shape<select class="field" id="builderEars"><option value="natural" selected>Natural</option><option value="large">Large</option><option value="pointed">Pointed</option></select></label>
+<label data-builder-control="horns">Horns / spikes<select class="field" id="builderHorns"><option value="none" selected>None</option><option value="short">Short</option><option value="long">Tall</option></select></label>
+<label data-builder-control="eyes">Eyes<select class="field" id="builderEyes"><option value="original" selected>Original</option><option value="red">Crimson</option><option value="gold">Gold</option><option value="cyan">Cyan</option></select></label>
+<label data-builder-control="slimeFace">Slime face<select class="field" id="builderSlimeFace"><option value="cute" selected>Cute</option><option value="blank">Blank</option><option value="angry">Angry</option></select></label></div>
+<div class="builder-group"><h3>Colors & extras</h3><span class="hint">Shared palette changes plus species-specific extras.</span>
+<label data-builder-control="accent">Adornment / markings<select class="field" id="builderAccent"><option value="none" selected>None</option><option value="collar">Neck band</option><option value="spots">Markings</option><option value="spines">Spines</option></select></label>
+<label data-builder-control="slimeExtras">Slime extras<select class="field" id="builderSlimeExtras"><option value="none" selected>None</option><option value="bubbles">Bubbles</option><option value="core">Inner core</option><option value="spikes">Toxic spikes</option></select></label>
+<label data-builder-control="tint">Color variant<select class="field" id="builderTint"><option value="original" selected>Original colors</option><option value="frost">Frost</option><option value="ember">Ember</option><option value="venom">Venom</option><option value="violet">Violet</option><option value="ash">Ash</option></select></label>
+<label>Name for new monster<input class="field" id="builderName" maxlength="80" value="Tower Rat Variant"></label></div></div>
+<div class="builder-visual"><div class="four-mini-grid" id="builderPreview" aria-label="Four generated directional sprite previews"></div><p class="small-muted">Changes update all four facings together. The visible controls are tailored to the selected species so mobile editing stays simpler.</p></div></div>
 <div class="v5-dialog-actions"><button class="btn" id="builderReset">Reset options</button><button class="btn primary" id="builderCreate">Create editable sprites</button></div></dialog>
 <dialog id="recolorDialog" class="forge-modal v5-modal" aria-labelledby="recolorTitle"><div class="dialog-top"><div><div class="modal-eyebrow">SPRITE FORGE / PALETTE</div><h2 id="recolorTitle">Global color replacement</h2></div><button class="btn small close-modal" id="closeRecolor" aria-label="Close color replacement">✕</button></div>
 <p>Choose a color from the sprites, then replace that exact RGB color. Alpha/transparency is preserved. This can affect all frames, including all four directions.</p><div id="recolorSwatches" class="recolor-swatches" aria-label="Colors in the current project"></div><div class="recolor-controls"><label>From<input type="color" id="recolorFrom" value="#8e7a80"></label><label>To<input type="color" id="recolorTo" value="#df7668"></label><label>Apply to<select id="recolorScope" class="field"><option value="all">Every project frame</option><option value="direction">Four directions only</option><option value="current">Current frame only</option></select></label></div><div class="recolor-feedback" id="recolorCount">Choose a source color.</div><div class="v5-dialog-actions"><button class="btn primary" id="applyRecolor">Replace matching pixels</button></div></dialog>
@@ -353,20 +362,32 @@ function saveLocalSlot(){const name=prompt('Name this local copy:',project.name)
 
 function sharePng(){const cv=sheetCanvas(),filename=slug(project.name)+'-spritesheet.png';cv.toBlob(async blob=>{if(!blob){notify('Could not render PNG');return}try{const file=new File([blob],filename,{type:'image/png'});if(navigator.canShare?.({files:[file]})){await navigator.share({files:[file],title:project.name+' 32×32 sprites'});return}saveBlob(blob,filename);notify('PNG downloaded (sharing unavailable)')}catch(err){if(err.name!=='AbortError'){saveBlob(blob,filename);notify('Sharing unavailable; saved PNG instead')}}},'image/png')}
 // V5: coordinated directional creation, reference alignment, precision cursor, library and Unity bundle
-const BUILDER_DEFAULT={body:'normal',head:'normal',profile:'normal',ears:'natural',horns:'none',eyes:'original',accent:'none',tint:'original'};
+const BUILDER_DEFAULT={body:'normal',head:'normal',profile:'normal',ears:'natural',horns:'none',eyes:'original',accent:'none',tint:'original',slimeBody:'round',slimeSurface:'smooth',slimeFace:'cute',slimeExtras:'none'};
+const BUILDER_UI_RULES={
+ rat:{help:'Rats use anatomy sliders like head size and ears. Extras stay light so the sprite remains readable at 32×32.',basic:['body','head','ears','eyes','tint'],advanced:['profile','horns','accent']},
+ slime:{help:'Slimes skip head, ear, and horn controls. Use blob shape, surface, face, and slime extras instead.',basic:['slimeBody','slimeFace','eyes','tint','slimeExtras'],advanced:['body','profile','slimeSurface','accent']},
+ bat:{help:'Bats benefit from body, head, and ear tuning. Horns act like little crest spikes if you want a variant.',basic:['body','head','ears','eyes','tint'],advanced:['profile','horns','accent']},
+ goblin:{help:'Goblins keep the humanoid controls plus optional horns and extra markings.',basic:['body','head','ears','eyes','tint'],advanced:['profile','horns','accent']},
+ skeleton:{help:'Skeletons use body, skull, and eye-glow styling. Ears stay hidden because they do not apply.',basic:['body','head','eyes','tint','accent'],advanced:['profile','horns']},
+ golem:{help:'Golems focus on bulk, silhouette, spikes, and palette shifts. Ear controls stay hidden.',basic:['body','head','eyes','tint','accent'],advanced:['profile','horns']},
+ spider:{help:'Spiders focus on body size, markings, and eye tone. Ear and horn controls stay hidden.',basic:['body','eyes','tint','accent'],advanced:['profile']}
+};
 const defaultBuilderOptions=()=>({...BUILDER_DEFAULT});
 let referenceFacing=-1,referenceOpacity=.30,precisionMode=false,precisionCursor={x:16,y:16};
 let recolorSelected=null;
-const builderOptions=()=>({body:$('builderBody').value,head:$('builderHead').value,profile:$('builderProfile').value,ears:$('builderEars').value,horns:$('builderHorns').value,eyes:$('builderEyes').value,accent:$('builderAccent').value,tint:$('builderTint').value});
-const builderInputs=['builderSpecies','builderBody','builderHead','builderProfile','builderEars','builderHorns','builderEyes','builderAccent','builderTint'];
+let builderMode='basic';
+const builderOptions=()=>({body:$('builderBody').value,head:$('builderHead').value,profile:$('builderProfile').value,ears:$('builderEars').value,horns:$('builderHorns').value,eyes:$('builderEyes').value,accent:$('builderAccent').value,tint:$('builderTint').value,slimeBody:$('builderSlimeBody').value,slimeSurface:$('builderSlimeSurface').value,slimeFace:$('builderSlimeFace').value,slimeExtras:$('builderSlimeExtras').value});
+const builderInputs=['builderSpecies','builderBody','builderHead','builderProfile','builderEars','builderHorns','builderEyes','builderAccent','builderTint','builderSlimeBody','builderSlimeSurface','builderSlimeFace','builderSlimeExtras'];
+function setBuilderMode(mode){builderMode=mode==='advanced'?'advanced':'basic';$('builderBasicMode').classList.toggle('active',builderMode==='basic');$('builderAdvancedMode').classList.toggle('active',builderMode==='advanced');$('builderBasicMode').setAttribute('aria-pressed',String(builderMode==='basic'));$('builderAdvancedMode').setAttribute('aria-pressed',String(builderMode==='advanced'));updateBuilderUI()}
+function updateBuilderUI(){const kind=$('builderSpecies').value,rules=BUILDER_UI_RULES[kind]||BUILDER_UI_RULES.rat,visible=new Set([...(rules.basic||[]),...(builderMode==='advanced'?(rules.advanced||[]):[])]);for(const node of document.querySelectorAll('[data-builder-control]')){const key=node.getAttribute('data-builder-control');node.hidden=!visible.has(key)}$('builderHelp').textContent=rules.help+(builderMode==='advanced'?' Advanced mode shows extra silhouette options.':' Basic mode keeps only the most useful mobile controls.');}
 function openBuilder(useSpecies){
  const saved=project&&project.builder;const kind=useSpecies||saved?.kind||$('monsterType').value;
  $('builderSpecies').value=monsterNames[kind]?kind:'rat';const opts=saved&&saved.kind===kind?saved.opts:defaultBuilderOptions();
  for(const key of Object.keys(BUILDER_DEFAULT))$('builder'+key[0].toUpperCase()+key.slice(1)).value=opts?.[key]||BUILDER_DEFAULT[key];
  $('builderName').value=project&&saved&&saved.kind===kind?project.name.replace(/ Directions$/,'')+' Variant':monsterNames[kind]+' Variant';
- renderBuilderPreview();$('builderDialog').showModal();
+ setBuilderMode('basic');renderBuilderPreview();$('builderDialog').showModal();
 }
-function renderBuilderPreview(){const grid=$('builderPreview');grid.replaceChildren();const kind=$('builderSpecies').value,cfg=builderOptions();for(let i=0;i<4;i++){const dir=starterDirectionOrder()[i],fr=buildMonsterFrame(kind,dir,cfg);const shell=document.createElement('div');shell.className='builder-card';const cv=document.createElement('canvas');cv.width=cv.height=128;drawSmall(cv.getContext('2d'),fr,128,128,true);const caption=document.createElement('strong');caption.textContent=directions[i];shell.append(cv,caption);grid.append(shell)}}
+function renderBuilderPreview(){updateBuilderUI();const grid=$('builderPreview');grid.replaceChildren();const kind=$('builderSpecies').value,cfg=builderOptions();for(let i=0;i<4;i++){const dir=starterDirectionOrder()[i],fr=buildMonsterFrame(kind,dir,cfg);const shell=document.createElement('div');shell.className='builder-card';const cv=document.createElement('canvas');cv.width=cv.height=128;drawSmall(cv.getContext('2d'),fr,128,128,true);const caption=document.createElement('strong');caption.textContent=directions[i];shell.append(cv,caption);grid.append(shell)}}
 function buildMonsterFrame(kind,dir,opts=BUILDER_DEFAULT){
  const start=starterFrame(kind,dir).pixels;
  const out=new Uint8ClampedArray(start.length);
@@ -413,6 +434,18 @@ function buildMonsterFrame(kind,dir,opts=BUILDER_DEFAULT){
   ctx.fillStyle='#d6d7b4';for(const [x,y] of [[12,20],[21,21],[15,24]])ctx.fillRect(x,y,2,2);
  } else if(opts.accent==='spines'){
   ctx.fillStyle='#343f48';for(let x=11;x<=21;x+=5){ctx.fillRect(x,feature[1]-2,2,4);ctx.fillStyle='#c2d3cb';ctx.fillRect(x,feature[1]-2,1,2);ctx.fillStyle='#343f48'}
+ }
+ if(kind==='slime'){
+  if(opts.slimeBody==='tall'){ctx.fillStyle='#86B86C';ctx.fillRect(14,11,5,3);ctx.fillRect(15,9,3,2)}
+  else if(opts.slimeBody==='puddle'){ctx.fillStyle='#56875B';ctx.fillRect(7,24,18,2);ctx.fillStyle='#86B86C';ctx.fillRect(9,23,14,1)}
+  if(opts.slimeSurface==='drippy'){ctx.fillStyle='#56875B';ctx.fillRect(11,24,2,3);ctx.fillRect(19,24,2,3);ctx.fillStyle='#86B86C';ctx.fillRect(12,24,1,2);ctx.fillRect(20,24,1,2)}
+  else if(opts.slimeSurface==='wobble'){ctx.fillStyle='#BDE59A';ctx.fillRect(10,14,2,1);ctx.fillRect(20,14,2,1);ctx.fillRect(15,13,2,1)}
+  if(opts.slimeFace==='blank'){ctx.fillStyle='#86B86C';ctx.fillRect(10,18,13,7);ctx.fillStyle='#284837';ctx.fillRect(side?18:14,23,4,1)}
+  else if(opts.slimeFace==='angry'){ctx.fillStyle='#284837';ctx.fillRect(10,18,4,1);ctx.fillRect(18,18,4,1);ctx.fillRect(12,19,2,2);ctx.fillRect(18,19,2,2);ctx.fillStyle='#f3d786';ctx.fillRect(12,19,1,1);ctx.fillRect(18,19,1,1);ctx.fillRect(14,23,5,1)}
+  else if(opts.slimeFace==='cute'){ctx.fillStyle='#d7a2ab';ctx.fillRect(10,22,1,1);ctx.fillRect(22,22,1,1);ctx.fillStyle='#284837';ctx.fillRect(14,23,4,1)}
+  if(opts.slimeExtras==='bubbles'){ctx.fillStyle='#bfe8c6';ctx.fillRect(9,10,2,2);ctx.fillRect(21,12,2,2);ctx.fillRect(18,8,1,1)}
+  else if(opts.slimeExtras==='core'){ctx.fillStyle='rgba(215,255,210,0.95)';ctx.fillRect(14,18,4,4);ctx.fillStyle='#5aa86d';ctx.fillRect(15,19,2,2)}
+  else if(opts.slimeExtras==='spikes'){ctx.fillStyle='#41614B';ctx.fillRect(11,12,2,2);ctx.fillRect(19,12,2,2);ctx.fillRect(15,10,2,2)}
  }
  const result=ctx.getImageData(0,0,SIZE,SIZE).data;
  for(let i=0;i<result.length;i+=4)if(result[i+3]<128)result[i]=result[i+1]=result[i+2]=result[i+3]=0;
@@ -490,8 +523,9 @@ for(const ident of ['openLibraryTop','mobileOpenLibrary','settingsLibrary'])$(id
 for(const ident of ['openRecolorTop','mobileOpenRecolor','settingsRecolor'])$(ident).onclick=()=>{if($('mobileOptionsDialog').open)$('mobileOptionsDialog').close();openRecolor()};
 for(const ident of ['openUnityTop','mobileOpenUnity','settingsUnity','exportUnityBundle'])$(ident).onclick=()=>{if($('mobileOptionsDialog').open)$('mobileOptionsDialog').close();exportUnityBundle()};
 $('closeBuilder').onclick=()=>$('builderDialog').close();$('builderCreate').onclick=createBuilderMonster;
-$('builderReset').onclick=()=>{for(const key of Object.keys(BUILDER_DEFAULT))$('builder'+key[0].toUpperCase()+key.slice(1)).value=BUILDER_DEFAULT[key];renderBuilderPreview()};
-for(const name of builderInputs)$(name).onchange=()=>{if(name==='builderSpecies')$('builderName').value=monsterNames[$('builderSpecies').value]+' Variant';renderBuilderPreview()};
+$('builderBasicMode').onclick=()=>setBuilderMode('basic');$('builderAdvancedMode').onclick=()=>setBuilderMode('advanced');
+$('builderReset').onclick=()=>{for(const key of Object.keys(BUILDER_DEFAULT))$('builder'+key[0].toUpperCase()+key.slice(1)).value=BUILDER_DEFAULT[key];setBuilderMode('basic');renderBuilderPreview()};
+for(const name of builderInputs)$(name).onchange=()=>{if(name==='builderSpecies'){$('builderName').value=monsterNames[$('builderSpecies').value]+' Variant';setBuilderMode('basic')}renderBuilderPreview()};
 $('closeRecolor').onclick=()=>$('recolorDialog').close();$('recolorFrom').oninput=updateRecolorCount;$('recolorScope').onchange=updateRecolorCount;$('applyRecolor').onclick=applyRecolor;
 $('closeLibrary').onclick=()=>$('libraryDialog').close();$('librarySaveCurrent').onclick=saveToLibrary;$('librarySearch').oninput=renderLibrary;
 $('referenceFacing').onchange=e=>{referenceFacing=Number(e.target.value);renderEditor()};$('referenceOpacity').oninput=e=>{referenceOpacity=Number(e.target.value)/100;renderEditor()};$('alignToDown').onclick=alignCurrentToDown;

@@ -1,7 +1,7 @@
-/* SpireWrought Sprite Forge V5.2 offline app shell.
+/* SpireWrought Sprite Forge V5.3 offline app shell.
  * Installed Android app URL must be a persistent HTTPS host, never 127.0.0.1.
  */
-const CACHE = 'spirewrought-sprite-forge-v5.2-guides';
+const CACHE = 'spirewrought-sprite-forge-v5.3-builder';
 const PREFIX = 'spirewrought-sprite-forge-';
 const HOME = new URL('./index.html', self.registration.scope).href;
 const OPTIONAL = ['./manifest.webmanifest', './icon-192.png', './icon-512.png'];

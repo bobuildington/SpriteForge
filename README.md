@@ -17,6 +17,13 @@ Open that URL in Chrome, allow it to fully load, then use the Chrome menu **⋮ 
 - Tap the two guide chips under the canvas to turn either line on or off. Both options also appear under **Menu → Tools & settings → Canvas overlays**. Settings are remembered on the current device.
 - The mobile drawing tools are a **single horizontally swipeable row**, with colors immediately below, to leave more space for art.
 
+## Monster-aware builder (V5.3)
+
+- Builder controls now adapt to the selected species; irrelevant anatomy controls are hidden.
+- Slime controls focus on the blob body, surface, face, and extras instead of ears, horns, or a separate head.
+- Basic / Advanced builder modes simplify the touch interface, with species-specific help.
+- All four facing sprites preview changes before creation; customizations remain editable and are included with project backups.
+
 ## Features
 
 - Seven editable monster starters (rat, slime, bat, goblin, skeleton, golem, spider)
