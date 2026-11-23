@@ -1,0 +1,26 @@
+{
+  "name": "SpireWrought Sprite Forge",
+  "short_name": "Sprite Forge",
+  "description": "32×32 directional monster sprite editor with builder, four-view comparison, recolor, touch drawing, monster library, and Unity exports.",
+  "id": "./index.html",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#101923",
+  "theme_color": "#101923",
+  "orientation": "any",
+  "icons": [
+    {
+      "src": "icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
