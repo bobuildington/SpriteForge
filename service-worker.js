@@ -1,86 +1,44 @@
-/* SpireWrought Sprite Forge V5.5 Monsters, Effects and Maps offline app shell.
- * Installed Android app URL must be a persistent HTTPS host, never 127.0.0.1.
- */
-const CACHE = 'spirewrought-sprite-forge-v5.5-maps';
-const PREFIX = 'spirewrought-sprite-forge-';
-const HOME = new URL('./index.html', self.registration.scope).href;
-const MAP_HOME = new URL('./maps/index.html', self.registration.scope).href;
-const MAP_DIR_PATH = new URL('./maps/', self.registration.scope).pathname;
-const MAP_FILE_PATH = new URL('./maps/index.html', self.registration.scope).pathname;
-const OPTIONAL = ['./manifest.webmanifest', './icon-192.png', './icon-512.png', './maps/index.html'];
-
-self.addEventListener('install', event => {
-  event.waitUntil((async () => {
-    const cache = await caches.open(CACHE);
-    // A real, successfully cached editor is required before activation.
-    const page = await fetch(new Request(HOME, {cache: 'reload'}));
-    if (!page.ok) throw new Error('Could not cache Sprite Forge index.html');
-    await cache.put(HOME, page.clone());
-    // Missing optional assets must not prevent the app from working offline.
-    await Promise.allSettled(OPTIONAL.map(async path => {
-      const url = new URL(path, self.registration.scope).href;
-      const response = await fetch(new Request(url, {cache: 'reload'}));
-      if (response.ok) await cache.put(url, response.clone());
-    }));
-    await self.skipWaiting();
-  })());
+/* SpireWrought Map Forge V2 — mobile offline shell. Licensed Forest Kit art is never cached by this service worker. */
+const CACHE='spirewrought-mapforge-v2-tiles-objects';
+const HOME=new URL('./index.html',self.registration.scope).href;
+const OPTIONAL=['./manifest.webmanifest','./icon-192.png','./icon-512.png'];
+self.addEventListener('install',event=>event.waitUntil((async()=>{
+ const cache=await caches.open(CACHE);
+ const response=await fetch(new Request(HOME,{cache:'reload'}));
+ if(!response.ok)throw Error('Could not cache Map Forge');
+ await cache.put(HOME,response.clone());
+ await Promise.allSettled(OPTIONAL.map(async path=>{
+   const url=new URL(path,self.registration.scope).href;
+   const r=await fetch(new Request(url,{cache:'reload'}));
+   if(r.ok)await cache.put(url,r.clone());
+ }));
+ await self.skipWaiting();
+})()));
+self.addEventListener('activate',event=>event.waitUntil((async()=>{
+ const keys=await caches.keys();
+ await Promise.all(keys.filter(key=>key!==CACHE&&(key.startsWith('spirewrought-sprite-forge-')||key.startsWith('spirewrought-mapforge-'))).map(key=>caches.delete(key)));
+ await self.clients.claim();
+})()));
+self.addEventListener('fetch',event=>{
+ const req=event.request;if(req.method!=='GET')return;const url=new URL(req.url);if(url.origin!==self.location.origin)return;
+ if(req.mode==='navigate'){
+   event.respondWith((async()=>{
+     const cache=await caches.open(CACHE),cached=await cache.match(HOME);
+     if(cached)return cached;
+     try{const r=await fetch(req);if(r.ok)await cache.put(HOME,r.clone());return r}
+     catch{return new Response('<h2>Map Forge is not cached yet</h2><p>Open this site once online to enable offline use.</p>',{status:503,headers:{'Content-Type':'text/html; charset=utf-8'}})}
+   })());return;
+ }
+ event.respondWith((async()=>{
+   const cache=await caches.open(CACHE),cached=await cache.match(req);
+   if(cached)return cached;
+   try{const r=await fetch(req);if(r.ok)await cache.put(req,r.clone());return r}
+   catch{return Response.error()}
+ })());
 });
-
-self.addEventListener('activate', event => {
-  event.waitUntil((async () => {
-    const keys = await caches.keys();
-    await Promise.all(keys
-      .filter(key => key.startsWith(PREFIX) && key !== CACHE)
-      .map(key => caches.delete(key)));
-    await caches.delete('sprite-forge-v5-2026-11-23');
-    await self.clients.claim();
-  })());
-});
-
-self.addEventListener('fetch', event => {
-  const request = event.request;
-  if (request.method !== 'GET') return;
-  const url = new URL(request.url);
-  if (url.origin !== self.location.origin) return;
-
-  if (request.mode === 'navigate') {
-    event.respondWith((async () => {
-      const cache = await caches.open(CACHE);
-      const target = url.pathname === MAP_DIR_PATH || url.pathname === MAP_FILE_PATH ? MAP_HOME : HOME;
-      const cached = await cache.match(target);
-      if (cached) return cached;
-      try {
-        const network = await fetch(request);
-        if (network.ok) await cache.put(target, network.clone());
-        return network;
-      } catch (err) {
-        return new Response('<h2>Sprite Forge is not cached yet</h2><p>Connect to the GitHub Pages site once to finish offline setup.</p>',
-          {status: 503, headers: {'Content-Type': 'text/html; charset=utf-8'}});
-      }
-    })());
-    return;
-  }
-
-  event.respondWith((async () => {
-    const cache = await caches.open(CACHE);
-    const cached = await cache.match(request);
-    if (cached) return cached;
-    try {
-      const response = await fetch(request);
-      if (response.ok) await cache.put(request, response.clone());
-      return response;
-    } catch(err) {
-      return Response.error();
-    }
-  })());
-});
-
-self.addEventListener('message', event => {
-  if (event.data?.type === 'SPRITE_FORGE_OFFLINE_CHECK') {
-    event.waitUntil((async () => {
-      const cache = await caches.open(CACHE);
-      const ready = !!(await cache.match(HOME));
-      if (event.ports && event.ports[0]) event.ports[0].postMessage({ready});
-    })());
-  }
+self.addEventListener('message',event=>{
+ if(event.data?.type==='MAP_FORGE_OFFLINE_CHECK')event.waitUntil((async()=>{
+   const cache=await caches.open(CACHE);
+   event.ports?.[0]?.postMessage({ready:!!(await cache.match(HOME))});
+ })());
 });

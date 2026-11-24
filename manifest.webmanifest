@@ -1,7 +1,7 @@
 {
-  "name": "SpireWrought Sprite Forge",
-  "short_name": "Sprite Forge",
-  "description": "Mobile artwork studio for SpireWrought: 32×32 monsters, animated effects, and forest map generation with private local kit import and Unity exports.",
+  "name": "SpireWrought Map Forge",
+  "short_name": "Map Forge",
+  "description": "Mobile map maker with forest generation and original tile and object pixel editor for SpireWrought.",
   "id": "./index.html",
   "start_url": "./index.html",
   "scope": "./",
