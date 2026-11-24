@@ -126,7 +126,10 @@ function restore(data){if(data.format!=='spirewrought-mapforge')throw Error('Not
  if(needsKit&&!s.meta)throw Error('This project uses the Forest Kit. Load the original ZIP first, then reopen this project.');
  if(s.meta){s.tile=s.meta.tiles[data.tile]?data.tile:Object.keys(s.meta.tiles)[0];s.overlay=s.meta.overlays[data.overlay]?data.overlay:Object.keys(s.meta.overlays)[0];$('tile').value=s.tile;$('overlay').value=s.overlay}
  $('mapName').value=data.name||'Map';$('seed').value=data.seed||412038;$('theme').value=data.theme||'forest';$('density').value=data.density||'medium';
- if(Array.isArray(data.customAssets)){s.customAssets=data.customAssets.filter(x=>x&&/^[a-zA-Z0-9_-]+$/.test(x.id)&&['tile','object'].includes(x.kind)&&[32,64,96,128].includes(x.size)&&typeof x.png==='string'&&x.png.startsWith('data:image/png;base64,')).slice(0,70);s.customImages.clear();try{localStorage.setItem(ART,JSON.stringify(s.customAssets))}catch(e){console.warn('Could not store asset copies',e)}}
+ if(Array.isArray(data.customAssets)){const imported=data.customAssets.filter(x=>x&&/^[a-zA-Z0-9_-]+$/.test(x.id)&&['tile','object'].includes(x.kind)&&[32,64,96,128].includes(x.size)&&typeof x.png==='string'&&x.png.startsWith('data:image/png;base64,')).slice(0,70);
+ const keys=new Set(imported.map(x=>x.id)),preserved=s.customAssets.filter(x=>!keys.has(x.id));
+ if(imported.length+preserved.length>70)throw Error('Import would exceed the 70-asset limit. Back up and remove unused assets before opening this map. Your current library was kept.');
+ s.customAssets=[...imported,...preserved];s.customImages.clear();try{localStorage.setItem(ART,JSON.stringify(s.customAssets))}catch(e){console.warn('Could not store asset copies',e);toast('Asset storage full. Download a project backup.')}}
  s.groundFill=customAsset('custom:'+(data.groundFill||''))?.kind==='tile'?data.groundFill:'';
  s.tileStamps=(data.tileStamps||[]).filter(t=>customAsset('custom:'+t.id)?.kind==='tile').map(t=>({id:t.id,x:clampTile(t.x),y:clampTile(t.y)}));
  s.objects=(data.objects||[]).filter(o=>o&&typeof o.file==='string'&&(customAsset(o.file)||s.meta?.objects[o.file])).map(o=>objectAt(o.file,o.footX,o.footY));
