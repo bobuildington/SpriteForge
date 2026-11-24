@@ -1,7 +1,7 @@
 {
   "name": "SpireWrought Map Forge",
   "short_name": "Map Forge",
-  "description": "Mobile map maker: variable-sized maps, full-map Fit, procedural forests and custom objects, drag/delete placements, terrain, collision and Unity export.",
+  "description": "Android map creator with 1254px Forest Kit world cells, visual world grid, grouped custom tile/object imports, collision tools and Unity-ready world ZIP exports.",
   "id": "./index.html",
   "start_url": "./index.html",
   "scope": "./",

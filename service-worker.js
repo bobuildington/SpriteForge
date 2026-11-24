@@ -1,7 +1,12 @@
-/* SpireWrought Map Forge V2.3 offline shell. Licensed Forest Kit is never cached here. */
-const CACHE='spirewrought-mapforge-v2.3-flexible-maps';
+/* SpireWrought Map Forge V2.4 offline shell. Licensed Forest Kit is never cached here. */
+const CACHE='spirewrought-mapforge-v2.4-world-grid';
 const HOME=new URL('./index.html',self.registration.scope).href;
-const OPTIONAL=['./manifest.webmanifest','./icon-192.png','./icon-512.png'];
+const WORLD=new URL('./world/index.html',self.registration.scope).href;
+const ROOT_PATH=new URL('./',self.registration.scope).pathname;
+const ROOT_FILE_PATH=new URL('./index.html',self.registration.scope).pathname;
+const WORLD_PATH=new URL('./world/',self.registration.scope).pathname;
+const WORLD_FILE_PATH=new URL('./world/index.html',self.registration.scope).pathname;
+const OPTIONAL=['./manifest.webmanifest','./icon-192.png','./icon-512.png','./world/index.html'];
 self.addEventListener('install',event=>event.waitUntil((async()=>{
  const cache=await caches.open(CACHE);
  const response=await fetch(new Request(HOME,{cache:'reload'}));
@@ -27,12 +32,13 @@ self.addEventListener('fetch',event=>{
  if(request.mode==='navigate'){
   event.respondWith((async()=>{
    const cache=await caches.open(CACHE);
+   const target=url.pathname===ROOT_PATH||url.pathname===ROOT_FILE_PATH?HOME:url.pathname===WORLD_PATH||url.pathname===WORLD_FILE_PATH?WORLD:null;
    try{
     const response=await fetch(new Request(request,{cache:'no-store'}));
-    if(response.ok && (url.pathname===new URL('./',self.registration.scope).pathname||url.pathname===new URL('./index.html',self.registration.scope).pathname))await cache.put(HOME,response.clone());
+    if(target&&response.ok)await cache.put(target,response.clone());
     return response;
    }catch{
-    const cached=await cache.match(HOME);
+    const cached=target&&await cache.match(target);
     if(cached)return cached;
     return new Response('<h2>Map Forge is not cached yet</h2><p>Connect once to this HTTPS site to enable offline use.</p>',{status:503,headers:{'Content-Type':'text/html; charset=utf-8'}});
    }

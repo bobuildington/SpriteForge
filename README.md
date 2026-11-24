@@ -1,41 +1,51 @@
-# SpireWrought Map Forge V2.3
+# SpireWrought Map Forge V2.4 — Original World Grid
 
-A map-only Android/desktop editor for SpireWrought. Hosted app: https://bobuildington.github.io/SpriteForge/
+A mobile-first forest map creator for SpireWrought, hosted on GitHub Pages at https://bobuildington.github.io/SpriteForge/.
 
-## Variable-sized maps
+**The SpireWrought Unity repository has not been modified.** The existing `UnityProject/Assets/Editor/ArenaMapKitImport.cs` importer already understands the original Forest Map Kit World Grid v2 export.
 
-In **Map Editor → Generate → Map dimensions**, select a preset or enter a custom width and height, then tap **Apply map size**. Both dimensions can be 256–3072 pixels, with a maximum area of 4,194,304 pixels to avoid excessive mobile memory use. Available presets include 512×512, 768×768, 1024×1024, 1254×1254, 1536×1536, 2048×2048, 1024×768, 2048×1024 and 1024×2048.
+## Tile and map sizes (confirmed from the original kit)
 
-**Fit** (or **Show full map**) calculates a scale that fits the entire rectangular map into the current map viewport. Use +/− for close editing; the Pan tool or scrolling moves a zoomed canvas. Maps preserve dimensions across local project saves, full backups, neighboring world cells and Unity ZIP exports. Older maps without a size field reopen at 1254×1254.
+- **World square:** 1254×1254 pixels (default and Unity importer requirement).
+- **Original Forest Kit ground tile:** a complete 1254×1254 pixel PNG, not a grid of smaller 32px sprites.
+- **Forest Kit overlay:** also 1254×1254, with alpha transparency.
+- **Additional hand-painted custom tiles:** 32×32 PNGs. They are separate editable detail/paint stamps, not replacements for the full-size kit ground.
+- **Placeable objects:** PNGs up to 512px in either dimension, centered on a square editing canvas; transparent margins are retained.
 
-Resizing smaller removes content outside the new boundaries after a confirmation. Use Undo to restore. The Forest Kit's 1254px ground and overlay textures are scaled to the selected map size; for perfect original pixel scale, use 1254×1254 or original 32×32 ground tiles.
+The individual map editor still allows custom widths/heights for non-kit standalone maps, but the **World Grid** always uses 1254×1254 and rejects incompatible cells when exporting for SpireWrought's current Unity importer.
 
-## Generate objects
+## Original-style World Grid
 
-Choose a **theme, density and seed**, then tap **Generate map objects**. With the original licensed Forest Kit loaded, generation uses its categories, source object dimensions, object collision and spacing, and avoids overlay exclusion areas. Without the kit, create at least one original placeable object in **Tiles & Objects**, then generate from your custom objects. Forest Kit and custom objects can be combined. Object counts scale with map area, up to 500 generated objects. Generation is deterministic for the same settings and available asset set.
+1. In Map Forge, tap **World Grid**. Choose 3×3, 5×5, 7×7 or 9×9, or enter your own columns/rows (1–12).
+2. Load your original licensed `TinyRealms_ForestMapKit_HTML_v2.0.zip` directly on your phone. Its artwork is kept local; none is copied into this public repo.
+3. **Generate here** makes the selected 1254×1254 square; **Fill empty squares** generates missing cells using per-square seeded layouts.
+4. Each square displays its actual rendered ground, overlay and objects in the overview. Tap A1, B1, etc. to see its preview and object count.
+5. **Open square** takes you to Map Editor to move/delete objects, paint custom tiles, adjust collisions, etc. Save your map before returning.
+6. **Export Forest Kit World ZIP** downloads `world.json`, `overview.png`, and `cells/A1/map.json`, `cells/A1/collision.png`, etc. Optional map/object PNGs increase size. The layout matches `ArenaMapKitImport.ImportWorld` in SpireWrought.
 
-**Replace existing placed objects** is checked by default; generation asks before removing placements. Uncheck it to keep manual objects and replace only previously generated objects. Ground tiles, collision painting and gameplay markers are never erased by object generation.
+**Compatibility:** The existing importer requires `world.json` with `format='forest-map-kit-world'` and `version=2`; square cells; each `map.json` with `size=[1254,1254]`, ground references to original `tiles/` and `overlays/` art, and collision PNG. It resolves images from the separately extracted licensed kit folder. The World Grid exports only original-kit artwork for this importer.
 
-## Move and delete map objects
+**Custom art limitation:** New custom 32px tiles and imported objects work in Map Forge and its editable backups but cannot be inserted into a World Grid export accepted by the *unchanged* existing importer. To use custom art in these exported Unity scenes, update the importer later in the game repo (not done in this update), or add the art inside Unity manually. The World Grid rejects incompatible custom art rather than silently losing it.
 
-In the **Place** tab, select **↔ Move** and tap an object. Drag it directly with your finger or mouse; alternatively tap an empty location to move it there, or enter exact **Foot X / Foot Y** coordinates. To delete, use the **✕ Delete** button at the top after selecting an object, **Delete selected** in the selection panel, or the **✕ Delete obj** tool and tap an object. All moves and deletes can be undone.
+## Custom tile and object groups
 
-## Original Forest Kit use
+- Go to **Tiles & Objects**. Select **Custom paint tile (32×32)** or **Placeable object**.
+- Choose/create a group (Terrain, Props, Trees, Rocks, Houses, etc.). Groups may be renamed. The library can be filtered by group.
+- **Import PNGs to group** accepts multiple PNG files. Paint tiles must be exactly 32×32. Objects preserve their original pixel proportions and are stored on the smallest supported square canvas that fits (32, 64, 96, 128, 256 or 512px). No upscale is applied.
+- Imported art is saved locally in IndexedDB and included in Map Forge project backups, subject to the existing 70-asset library cap.
+- The original 24 generated SpireWrought terrain tiles remain available under **Add 24 tiles**.
+- The 1254px original kit ground images are loaded only through **Load kit ZIP** (not as 32px paint tiles).
 
-Load `TinyRealms_ForestMapKit_HTML_v2.0.zip` locally from your Android downloads. The original licensed artwork remains on your device and **is not bundled in this public repository**. Kit ZIP is needed again to edit previously saved projects that use its assets. Optionally store the ZIP offline using IndexedDB, subject to device storage limits.
+## Android offline use
 
-## Unity export
+Open the HTTPS address in Chrome once, refresh, then open the installed app. The service worker caches **both** Map Editor and World Grid, and uses network-first updates with cached offline fallbacks. Kit artwork is not automatically cached by the service worker; use **Save kit offline** separately (storage quota permitting).
 
-**Save / Export → Unity map bundle ZIP** exports map.json, map.png, objects.png, custom-tiles.png, collision.png, the editable project, and original custom asset PNGs. All PNG outputs use the map's current width and height. The Unity editor importer in `Unity/Editor/MapForgeImporter.cs` reads dimensions from map.json. When neighboring world cells have different dimensions, their Unity placements are approximate—position the imported scene roots manually until a world-level layout importer is available. The importer generates baked art and approximate colliders, not full dynamic depth sorting or runtime streaming.
+Export an editable project backup before major work. Browser-managed app data can be cleared by Android or browser cleanup.
 
-## Compatibility and safeguards
+## Development verification
 
-- Old V2.1/V2.2 projects and 1254px maps are supported.
-- Resizing smaller warns before trimming objects, markers or terrain, and supports Undo.
-- New custom assets can be stored in IndexedDB and exported in full backups.
-- Ground painting, edge blending, gameplay markers, tile/object editing, collision painting and tile pack remain available.
-- Service worker cache bumped to V2.3 for Android updates. Refresh the HTTPS site online before reopening the installed app.
-
-## Verification
-
-Chromium mobile regression tested custom object generation without kit, 1024×768 map sizing and full-fit, exact-coordinate object move, Delete/Undo, project serialization, rectangular PNG/ZIP export, original Forest Kit loading (4 tiles, 29 overlays, 259 objects), pointer drag, undo after resize and per-cell dimension restoration. Physical Android and Unity play-mode testing still pending.
+- Tested the actual 102 MB Forest Kit ZIP: 4 full-size ground tiles, 29 overlays, 259 object assets.
+- World Grid displayed nine separate squares at 3×3, with the generated A1 cell rendered as a thumbnail and a full selected preview.
+- Generated and exported a 1254px A1 map with 75 objects; ZIP passed integrity validation; verified `world.json`, `cells/A1/map.json` and `cells/A1/collision.png` plus `overview.png`.
+- Tested creating an object group, filtering saved artwork, importing a 96×96-padded rectangular object and rejecting incorrect-size paint tiles.
+- The C# importer schema was checked by reading the existing SpireWrought repo. Unity Editor integration itself has **not** been retested.
