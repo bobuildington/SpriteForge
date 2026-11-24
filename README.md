@@ -24,6 +24,31 @@ Open that URL in Chrome, allow it to fully load, then use the Chrome menu **⋮ 
 - Basic / Advanced builder modes simplify the touch interface, with species-specific help.
 - All four facing sprites preview changes before creation; customizations remain editable and are included with project backups.
 
+## Effect Maker (V5.4)
+
+Sprite Forge now supports **two asset modes**:
+
+- **Monsters** — four 32×32 facings (Down, Left, Right, Up) with the existing species-aware builder.
+- **Effects** — timed frame animations for spells, projectiles, impact flashes, auras, smoke and particle effects.
+
+### Create an effect
+
+1. Tap **Effects** above the canvas.
+2. Tap **Effect Maker**.
+3. Choose one of 10 presets: Fireball, Magic Bolt, Explosion, Slash Arc, Lightning, Poison Cloud, Healing Shimmer, Hit Impact, Smoke Puff, or Shield Aura.
+4. Choose one of 6 color themes, set **4–12 frames**, **1–18 FPS**, and whether the animation loops.
+5. Preview the animated effect, then tap **Generate editable effect**.
+6. Tap/swipe frame thumbnails to edit individual 32×32 frames. Use the pixel editor, onion skin, frame duplication, Undo, and recoloring.
+7. Export a transparent PNG strip, GIF, metadata JSON, editable backup, or Unity-ready ZIP.
+
+**Effects do not use facing-direction controls.** The feet baseline is hidden for effect projects. A generator replaces the current open project only after confirmation; export a backup before replacing unsaved art.
+
+### Unity export layout
+
+An effect with 8 frames becomes a **256×32 PNG** with frames ordered left to right (each 32×32). The ZIP includes a JSON with FPS, frame duration, loop mode, and pixel rectangles, plus a project backup and import instructions.
+
+**Android updates:** Load the GitHub Pages URL in Chrome while online, refresh once, then reopen the installed app to pick up the V5.4 offline cache. Old projects remain importable.
+
 ## Features
 
 - Seven editable monster starters (rat, slime, bat, goblin, skeleton, golem, spider)

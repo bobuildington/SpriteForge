@@ -1,7 +1,7 @@
 {
   "name": "SpireWrought Sprite Forge",
   "short_name": "Sprite Forge",
-  "description": "32×32 directional monster sprite editor with builder, four-view comparison, recolor, touch drawing, monster library, and Unity exports.",
+  "description": "Mobile 32×32 pixel editor for directional monster sprites and animated spell, projectile, impact and aura effects with Unity exports.",
   "id": "./index.html",
   "start_url": "./index.html",
   "scope": "./",
