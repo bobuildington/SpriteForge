@@ -1,4 +1,4 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#101923"><title>SpireWrought Map Forge V2.2 · World, Markers & Terrain</title><link rel="manifest" href="./manifest.webmanifest"><style>
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#101923"><title>SpireWrought Map Forge V2.3 · Flexible Maps & Object Editing</title><link rel="manifest" href="./manifest.webmanifest"><style>
 :root{--bg:#101923;--panel:#192736;--card:#223346;--edge:#3c5268;--ink:#eef5fa;--muted:#a5bccd;--gold:#f1bd7c;--mint:#9de0ce}*{box-sizing:border-box}html,body{margin:0;background:var(--bg);color:var(--ink);font:14px/1.45 system-ui,sans-serif}button,input,select{font:inherit}button{border:1px solid var(--edge);border-radius:10px;background:var(--card);color:var(--ink);padding:10px;cursor:pointer;touch-action:manipulation}button:disabled{opacity:.48}button.active{background:#27524c;border-color:var(--mint)}button.primary{background:var(--gold);border-color:#f4cd98;color:#202b35;font-weight:800}button.soft{background:#2a4c49;color:#c5f7e8}input,select{background:#102030;border:1px solid var(--edge);border-radius:9px;color:var(--ink);width:100%;min-width:0;padding:9px}input[type=checkbox]{width:auto;accent-color:var(--mint)}a{color:var(--mint);text-decoration:none}h1{font-size:23px;line-height:1.1;margin:0}h1 em{font-style:normal;color:var(--gold)}small,.sub{font-size:11px;color:var(--muted)}.top{display:flex;align-items:center;gap:14px;padding:11px 16px;background:#101b29;border-bottom:1px solid var(--edge)}.brand{flex:1}.brand small{color:var(--gold);font-weight:800;letter-spacing:.11em}.desktop{font-size:11px;color:var(--muted)}.kitbar{display:flex;flex-wrap:wrap;gap:9px;align-items:center;background:#142232;padding:12px 16px;border-bottom:1px solid var(--edge)}.grow{flex:1}.kitbar .grow{min-width:190px}.layout{max-width:1500px;margin:auto;padding:13px;display:grid;grid-template-columns:316px minmax(0,1fr);gap:12px}.panel{background:var(--panel);border:1px solid var(--edge);border-radius:12px;min-width:0;overflow:hidden}.tabs{display:flex;gap:5px;overflow-x:auto;padding:9px 9px 0}.tabs button{flex:1;white-space:nowrap;padding:9px 6px}.panel-content{padding:12px}.controls{display:grid;gap:12px}.controls label{font-size:11px;color:#bdd3e1;font-weight:700;display:grid;gap:5px}.tip{background:#122b38;border:1px solid #355365;border-radius:10px;padding:10px;font-size:12px;color:#b9d8e1;margin:0}.twocol,.two-buttons{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:7px}.three-buttons{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:7px}.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:7px}.stats div{background:#142435;border-radius:8px;padding:9px;display:grid;gap:2px;border:1px solid var(--edge)}.stats b{color:var(--gold);font-size:17px}.stats span{font-size:10px;color:var(--muted)}.wide{width:100%}.card{background:#152434;border:1px solid var(--edge);padding:10px;border-radius:10px;display:grid;gap:9px}.card p{margin:0}.palette{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px;max-height:320px;overflow-y:auto}.object-btn{display:grid;justify-items:center;min-width:0;gap:3px;padding:6px 3px}.object-btn.active{border-color:var(--gold);background:#3a342f}.object-btn img{width:90%;height:65px;object-fit:contain}.object-btn small{overflow:hidden;max-width:100%;white-space:nowrap;text-overflow:ellipsis}.library{display:grid;gap:6px;max-height:220px;overflow:auto}.library-row{display:flex;gap:5px;align-items:center;font-size:11px}.library-row span{min-width:0;flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.library-row button{padding:5px 8px}.toolbar{display:flex;align-items:center;gap:7px;flex-wrap:wrap;padding:8px;border-bottom:1px solid var(--edge)}.toolbar button{padding:8px 12px}.toolbar #zoomLabel{min-width:47px;text-align:center}.toggle{display:flex;gap:5px;align-items:center;font-size:11px}.viewport{position:relative;background:#0e1a24;overflow:auto;overscroll-behavior:contain;max-height:calc(100dvh - 260px);height:min(75vw,760px);min-height:280px}.scene{width:100%;margin:auto;position:relative;line-height:0}.scene canvas{display:block;width:100%;height:auto;touch-action:none}.scene #over{position:absolute;inset:0;pointer-events:none}.footer{border-top:1px solid var(--edge);padding:9px 10px;font-size:11px;color:var(--muted);display:flex;justify-content:space-between;gap:10px}#toast{position:fixed;bottom:12px;left:50%;z-index:5;transform:translateX(-50%);background:#1e423a;color:#dbfff2;border:1px solid #579585;border-radius:10px;padding:10px 13px;box-shadow:0 6px 20px #000a;max-width:90vw;font-size:12px}[hidden]{display:none!important}@media(max-width:760px){.desktop{display:none}.top{padding:10px}.kitbar{padding:9px}.layout{display:flex;flex-direction:column;padding:9px;gap:9px}.map-area{order:0}.editor{order:1}.viewport{height:min(88vw,540px);min-height:280px;max-height:65dvh}.toolbar{gap:5px}.toolbar button{padding:8px 10px}.palette{grid-template-columns:repeat(4,minmax(0,1fr))}.panel-content{padding:10px}.footer{font-size:10px}h1{font-size:21px}}
 
 /* Map-only product shell and touch-first Tile & Object Studio */
@@ -12,6 +12,7 @@
 .world-panel{margin-top:2px}.world-nav{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px}.world-nav>span{min-height:1px}.world-nav button{padding:8px 3px}.map-tools{grid-template-columns:repeat(4,minmax(0,1fr));gap:5px}.map-tools button{min-height:40px}.marker-list{max-height:170px;overflow-y:auto;display:grid;gap:5px}.marker-row{display:flex;align-items:center;gap:6px;border:1px solid #405568;padding:5px 7px;border-radius:8px}.marker-row>span{flex:1;overflow:hidden;text-overflow:ellipsis}.marker-row button{padding:5px 8px;font-size:11px}@media(max-width:760px){.map-tools button{font-size:11px}.world-panel{padding:9px}}
 .tile-pack-panel{display:grid;gap:8px;padding:12px;border:1px solid #6b8768;background:linear-gradient(125deg,#1b3934,#183041);border-radius:12px}.tile-pack-panel strong{font-size:13px;color:#f4daab}.tile-pack-panel .sub{margin:4px 0 0}.tile-pack-panel button{min-height:42px}
 @media (min-width:761px){.tile-pack-panel{grid-template-columns:1fr 1fr}.tile-pack-panel>div{grid-column:1/-1}}
+.dimension-panel{display:grid;gap:8px}.dimension-panel strong{font-size:13px}.dimension-panel .sub{margin:0}.map-tools{grid-template-columns:repeat(3,minmax(0,1fr))}.map-area .toolbar{overflow-x:auto;scrollbar-width:thin}.map-area .toolbar button{flex:0 0 auto}.map-area .toolbar #toolbarDelete{color:#ffd0c9}.map-area .toolbar #toolbarMove{color:#c9f3e6}.dimension-panel button{min-height:40px}#selectedBox .two-buttons{grid-template-columns:repeat(2,minmax(0,1fr))}#selectedBox .two-buttons button{font-size:12px}#selectedBox .danger{color:#ffe0df;background:#5b3037;border-color:#996069} .scene{transform-origin:top left}.map-area .viewport{width:100%}#mapSizeStat{font-size:12px;overflow-wrap:anywhere}@media(max-width:760px){.map-area .toolbar{gap:5px}.dimension-panel{padding:10px}}
 </style></head><body>
 <header class="top"><div class="brand"><small>SPIREWROUGHT · CREATION TOOLS</small><h1>Map <em>Forge</em></h1></div><span class="desktop">MAPS · TILES · OBJECTS</span></header>
 <nav class="workspace-switch" aria-label="Map making workspaces"><button id="workspaceMap" class="active" aria-pressed="true">▦ Map Editor</button><button id="workspaceStudio" aria-pressed="false">✎ Tiles & Objects</button></nav>
@@ -22,30 +23,34 @@
 <section id="tab-generate" class="controls">
 <p class="tip">Use the optional Forest Kit for procedural forests, or create your own ground tiles and objects in <strong>Tiles & Objects</strong>. Custom artwork works without a kit.</p>
 <label>Map name<input id="mapName" value="Forest Clearing 01" maxlength="80"></label>
+<div class="card dimension-panel"><strong>Map dimensions</strong><p class="sub">Choose width and height separately. Existing art is kept when resizing larger; content outside a smaller map is trimmed after confirmation.</p>
+<label>Quick sizes<select id="mapPreset"><option value="1254x1254">Forest Kit original · 1254 × 1254</option><option value="512x512">Small square · 512 × 512</option><option value="768x768">Medium square · 768 × 768</option><option value="1024x1024">Standard square · 1024 × 1024</option><option value="1536x1536">Large square · 1536 × 1536</option><option value="2048x2048">Huge square · 2048 × 2048</option><option value="1024x768">Landscape · 1024 × 768</option><option value="2048x1024">Wide landscape · 2048 × 1024</option><option value="1024x2048">Tall dungeon · 1024 × 2048</option><option value="custom">Custom width / height</option></select></label>
+<div class="twocol"><label>Width (pixels)<input id="mapWidth" type="number" inputmode="numeric" min="256" max="3072" step="1" value="1254"></label><label>Height (pixels)<input id="mapHeight" type="number" inputmode="numeric" min="256" max="3072" step="1" value="1254"></label></div>
+<div class="two-buttons"><button id="applyMapSize" class="primary">Apply map size</button><button id="fitMapButton">⤢ Show full map</button></div><p id="sizeMessage" class="sub">Maximum canvas area: 4,194,304 pixels, to reduce Android memory issues.</p></div>
 <div class="twocol"><label>Ground tile<select id="tile" disabled><option>Load kit</option></select></label><label>Ground overlay<select id="overlay" disabled><option>Load kit</option></select></label></div>
 <div class="twocol"><label>Theme<select id="theme"><option value="forest">Forest</option><option value="dense">Deep woods</option><option value="clearing">Clearing</option><option value="mystic">Mystic</option><option value="ruins">Ruins</option></select></label><label>Density<select id="density"><option value="sparse">Sparse</option><option value="medium" selected>Medium</option><option value="dense">Dense</option></select></label></div>
 <label>Seed<input type="number" id="seed" inputmode="numeric" value="412038" min="1" max="2147483647"></label>
 <label>Custom repeating ground tile<select id="groundFill"><option value="">Kit ground / plain background</option></select></label>
-<div class="two-buttons"><button id="newSeed">🎲 New seed</button><button id="generate" class="primary" disabled>Generate forest from kit</button></div>
+<div class="two-buttons"><button id="newSeed">🎲 New seed</button><button id="generate" class="primary" disabled>✦ Generate map objects</button></div><label class="check-row"><input id="replaceGenerated" type="checkbox" checked> Replace existing placed objects when generating</label>
 <div class="card world-panel"><strong>Connected world cells</strong><p class="sub">Save and open neighboring map cells. Each cell keeps its own objects, tiles, collision paint, and gameplay markers.</p>
 <div class="twocol"><label>World X<input id="worldX" type="number" value="0" min="-999" max="999" inputmode="numeric"></label><label>World Y<input id="worldY" type="number" value="0" min="-999" max="999" inputmode="numeric"></label></div>
 <div class="world-nav"><span></span><button id="worldN" title="North cell">↑ N</button><span></span><button id="worldW">← W</button><button id="worldSave" class="primary">Save cell</button><button id="worldE">E →</button><span></span><button id="worldS">↓ S</button><span></span></div>
 <p id="worldStatus" class="sub">Cell (0, 0) · not saved</p><div class="two-buttons"><button id="worldExport">↓ World JSON</button><button id="worldImport">↑ World JSON</button></div><input type="file" accept=".json,application/json" id="worldImportInput" hidden></div>
 <div class="card"><label class="check-row"><input id="autoBlend" type="checkbox"> Smart tile edge blending</label><p class="sub">Soften borders where different painted terrain tiles touch. Collision stays on the original grid.</p></div>
-<div class="stats"><div><b id="objectCount">0</b><span>Objects</span></div><div><b id="tileCount">0</b><span>Custom tiles</span></div><div><b id="blockCount">0</b><span>Blocking</span></div><div><b>1254</b><span>Map size (px)</span></div></div>
+<div class="stats"><div><b id="objectCount">0</b><span>Objects</span></div><div><b id="tileCount">0</b><span>Custom tiles</span></div><div><b id="blockCount">0</b><span>Blocking</span></div><div><b id="mapSizeStat">1254×1254</b><span>Map size (px)</span></div></div>
 <p class="tip">Kit objects preserve original foot pivots, collision polygons, and sort order. Your custom tiles/objects export as separate PNG assets with positions in <code>map.json</code>.</p>
 </section>
 <section id="tab-place" class="controls" hidden>
-<p class="tip">Tap to paint tiles on a 32-pixel grid, or place objects at their feet. Use Select to move objects; Marker adds gameplay locations; Block/Walk paint collision overrides; Pan moves the canvas.</p>
+<p class="tip">Tap to paint tiles on a 32-pixel grid, or place objects at their feet. Use Select / Move to drag objects, or tap an empty point to move the selected object; Marker adds gameplay locations; Block/Walk paint collision overrides; Pan moves the canvas.</p>
 <label>Category<select id="category" disabled></select></label>
 <div id="palette" class="palette"></div>
-<div class="tool-mode-row map-tools"><button class="active" data-mode="place">Place</button><button data-mode="select">Select</button><button data-mode="erase">Erase tile</button><button data-mode="pan">Pan</button><button data-mode="marker">Marker</button><button data-mode="block">Block</button><button data-mode="walk">Walk</button><button data-mode="collision-erase">Clear paint</button></div><div class="card"><strong>Gameplay markers</strong><p class="sub">Choose a marker type, then tap the map using the Marker tool. These export as data for SpireWrought gameplay.</p>
+<div class="tool-mode-row map-tools"><button class="active" data-mode="place">Place</button><button data-mode="select">↔ Move</button><button data-mode="remove-object">✕ Delete obj</button><button data-mode="erase">Erase tile</button><button data-mode="pan">Pan</button><button data-mode="marker">Marker</button><button data-mode="block">Block</button><button data-mode="walk">Walk</button><button data-mode="collision-erase">Clear paint</button></div><div class="card"><strong>Gameplay markers</strong><p class="sub">Choose a marker type, then tap the map using the Marker tool. These export as data for SpireWrought gameplay.</p>
 <div class="twocol"><label>Type<select id="markerType"><option value="player-spawn">Player spawn</option><option value="enemy-spawn">Enemy spawn</option><option value="loot">Loot</option><option value="npc">NPC</option><option value="door">Door</option><option value="stairs-up">Stairs up</option><option value="stairs-down">Stairs down</option><option value="teleporter">Teleporter</option><option value="interactable">Interactable</option><option value="checkpoint">Checkpoint</option><option value="boss">Boss</option><option value="quest">Quest</option></select></label><label>Label<input id="markerLabel" maxlength="70" placeholder="Optional name"></label></div>
 <label>Target / ID (optional)<input id="markerTarget" maxlength="90" placeholder="e.g. Floor_02 or RatSpawn_A"></label>
 <div id="markerList" class="marker-list sub">No markers yet.</div></div>
 <div class="card"><strong>Walkability brush</strong><p class="sub">Use Block or Walk tools to paint a 32×32 collision grid. This overrides ground, water, and object collision, for entrances and bridges.</p><button id="clearCollision" class="wide">Clear collision overrides</button></div>
 
-<div class="card" id="selectedBox" hidden><strong>Selected object</strong><p class="sub" id="selectedInfo"></p><div class="two-buttons"><button id="duplicate">Duplicate</button><button id="remove">Remove</button></div><p class="sub">Tap an object to select it; tap an empty location to move it. Select another object directly to switch selection.</p></div>
+<div class="card" id="selectedBox" hidden><strong>Selected object</strong><p class="sub" id="selectedInfo"></p><div class="twocol"><label>Foot X<input id="selectedFootX" type="number" inputmode="numeric" min="0" value="0"></label><label>Foot Y<input id="selectedFootY" type="number" inputmode="numeric" min="0" value="0"></label></div><div class="two-buttons"><button id="moveSelectedTo">Move to X / Y</button><button id="duplicate">Duplicate</button><button id="remove" class="danger">✕ Delete selected</button></div><p class="sub">Drag a selected object directly on the map (or tap an empty location to place it). Tap Delete selected to remove it. Undo works for both.</p></div>
 <div class="two-buttons"><button id="undo" disabled>↶ Undo</button><button id="clear" disabled>Clear placements</button></div><button id="openStudioFromPlace" class="wide soft">✎ Create a tile or object</button><button id="assetFromMap" class="wide">Copy selected sprite into editor</button>
 </section>
 <section id="tab-export" class="controls" hidden>
@@ -55,7 +60,7 @@
 <div class="card"><strong>Editable map</strong><p class="sub">Projects save custom tile/object art and placements. To reopen a project that uses the Forest Kit, load your ZIP separately.</p><div class="two-buttons"><button id="projectSave" disabled>↓ Project JSON</button><button id="projectLoad">↑ Open project</button></div><button id="librarySave" class="wide" disabled>Save in map library</button><button id="backupAll" class="wide soft">↓ Full backup (map, library & art)</button><div id="library" class="library"></div></div>
 <div class="sub">Licence: Tiny Realms kit graphics remain local to your device; they are not republished in this public tool or bundled as source assets.</div>
 </section></div></aside>
-<main class="panel map-area"><div class="toolbar"><button id="quickGen" class="soft" disabled>✦ Generate</button><button id="zoomOut">−</button><span id="zoomLabel">100%</span><button id="zoomIn">+</button><button id="fit">Fit</button><span class="grow"></span><label class="toggle"><input id="collisionToggle" type="checkbox"> Collision</label></div>
+<main class="panel map-area"><div class="toolbar"><button id="quickGen" class="soft" disabled>✦ Generate</button><button id="toolbarMove">↔ Move</button><button id="toolbarDelete" disabled>✕ Delete</button><button id="zoomOut">−</button><span id="zoomLabel">100%</span><button id="zoomIn">+</button><button id="fit">Fit</button><span class="grow"></span><label class="toggle"><input id="collisionToggle" type="checkbox"> Collision</label></div>
 <div class="viewport" id="viewport"><div class="scene" id="scene"><canvas width="1254" height="1254" id="map" aria-label="Forest map canvas"></canvas><canvas width="1254" height="1254" id="over" aria-hidden="true"></canvas></div></div>
 <div class="footer"><span id="viewStatus">Create a tile, add the ground pack, or load your kit to begin.</span><span id="coords">1254 × 1254</span></div></main></div>
 
@@ -87,7 +92,9 @@
 
 <div id="toast" role="status" hidden></div><a id="download" hidden></a><script>
 'use strict';
-const $=id=>document.getElementById(id),SIZE=1254,encoder=new TextEncoder(),decoder=new TextDecoder();
+const $=id=>document.getElementById(id),encoder=new TextEncoder(),decoder=new TextDecoder();
+let MAP_WIDTH=1254,MAP_HEIGHT=1254;
+const SIZE=1254; // The licensed source kit uses a 1254px reference canvas.
 const LS='spirewrought-mapforge-map-v1',LIB='spirewrought-mapforge-library-v1',ART='spirewrought-mapforge-original-assets-v1';
 const MAP_V22='spirewrought-mapforge-v2.2';
 const cv=$('map'),ctx=cv.getContext('2d'),ov=$('over'),oc=ov.getContext('2d');
@@ -130,8 +137,36 @@ async function picture(path){if(!path)return null;if(path.startsWith('custom:'))
 function objectAt(path,footX,footY){const own=customAsset(path);if(own){const w=own.size,h=own.size,px=Math.floor(w/2),py=h-1,x=Math.round(footX-px),y=Math.round(footY-py),solid=own.solid&&own.kind==='object';return {file:path,assetPath:'assets/'+own.id+'.png',folder:'custom',shape:'custom-object',x,y,w,h,footX:Math.round(footX),footY:Math.round(footY),collision:solid?'standing':'none',sortY:y+py,...(solid?{feet:[[x+4,y+h-5],[x+w-4,y+h-5],[x+w-4,y+h-1],[x+4,y+h-1]]}:{})}}
  const d=s.meta.objects[path],c=d.collision||{},[w,h]=d.size,[px,py]=d.foot,x=Math.round(footX-px),y=Math.round(footY-py);const points=list=>(list||[]).map(([a,b])=>[a+x,b+y]);
  return {file:path,folder:path.split('/')[1],shape:c.shape||path.split('/')[1],x,y,w,h,footX:Math.round(footX),footY:Math.round(footY),collision:c.kind||'none',sortY:y+(c.sortY??py),...(c.feet?.length?{feet:points(c.feet)}:{}),...(c.parts?.length?{parts:c.parts.map(points)}:{}),...(c.strips?.length?{pieces:c.strips.map(([srcX,srcW,sy])=>({srcX,srcW,x:x+srcX,sortY:y+sy}))}:{})};}
-function mapData(){const info=s.meta?.overlays[s.overlay]||{};return {format:s.meta?'forest-map-kit-map':'spirewrought-mapforge-map',version:2,generator:'SpireWrought Map Forge V2.2',seed:String($('seed').value),theme:$('theme').value,size:[SIZE,SIZE],pixelsPerMetre:37,ground:{tile:s.meta?s.tile:null,overlay:s.meta?s.overlay:null},roadsAtEdges:info.edges||{N:[],E:[],S:[],W:[]},water:info.water||null,noGo:(info.avoid||[]).map(a=>({kind:a[4]||'feature',cx:a[0],cy:a[1],rx:a[2],ry:a[3]})),objects:[...s.objects].sort((a,b)=>((a.collision==='ground'?0:1)-(b.collision==='ground'?0:1))||a.sortY-b.sortY),world:{x:s.worldX,y:s.worldY},markers:s.markers.map(m=>({...m})),collisionPaint:s.collisionPaint.map(c=>({...c})),autoBlend:!!s.autoBlend,custom:{tileSize:32,groundFill:s.groundFill?'assets/'+s.groundFill+'.png':null,groundAssetId:s.groundFill||null,tiles:s.tileStamps.map(t=>({file:'assets/'+t.id+'.png',assetId:t.id,x:t.x,y:t.y,blocked:!!customAsset('custom:'+t.id)?.solid})),assets:s.customAssets.map(a=>({id:a.id,name:a.name,kind:a.kind,size:[a.size,a.size],collision:a.solid?'standing':'none',file:'assets/'+a.id+'.png'}))}};}
-function recipe(){return {format:'spirewrought-mapforge',version:3,name:$('mapName').value,seed:String($('seed').value),theme:$('theme').value,density:$('density').value,tile:s.tile,overlay:s.overlay,objects:s.objects.map(o=>({file:o.file,footX:o.footX,footY:o.footY})),tileStamps:s.tileStamps.map(t=>({...t})),markers:s.markers.map(m=>({...m})),collisionPaint:s.collisionPaint.map(c=>({...c})),worldX:s.worldX,worldY:s.worldY,autoBlend:s.autoBlend,groundFill:s.groundFill,customAssets:s.customAssets.map(a=>({...a}))};}
+function scaledOverlayMetadata(info){
+ const sx=MAP_WIDTH/1254,sy=MAP_HEIGHT/1254;
+ const sourceRoads=info.edges||{N:[],E:[],S:[],W:[]};const roads={};
+ for(const side of ['N','E','S','W']){const sc=(side==='N'||side==='S')?sx:sy;roads[side]=(sourceRoads[side]||[]).map(pair=>[Math.round(pair[0]*sc),Math.round(pair[1]*sc)])}
+ const sourceWater=info.water;let water=null;
+ if(sourceWater){
+  const polygons=(sourceWater.polygons||[]).map(poly=>poly.map(([x,y])=>[Math.round(x*sx),Math.round(y*sy)]));
+  const sourceMask=sourceWater.mask;let mask=null;
+  if(sourceMask?.rows){
+   const scale=4,columns=Math.ceil(MAP_WIDTH/scale),rowsCount=Math.ceil(MAP_HEIGHT/scale),rows=[];
+   for(let row=0;row<rowsCount;row++){
+    const syRow=clamp(Math.floor((row+.5)*scale/sy/sourceMask.scale),0,sourceMask.rows.length-1),runs=sourceMask.rows[syRow]||[];
+    const spans=[];
+    for(let i=0;i<runs.length;i+=2){const start=clamp(Math.floor(runs[i]*sourceMask.scale*sx/scale),0,columns);
+      const finish=clamp(Math.ceil((runs[i]+runs[i+1])*sourceMask.scale*sx/scale),0,columns);
+      if(finish>start)spans.push([start,finish]);
+    }
+    spans.sort((a,b)=>a[0]-b[0]);const merged=[];
+    for(const span of spans){const last=merged[merged.length-1];if(last&&span[0]<=last[1])last[1]=Math.max(last[1],span[1]);else merged.push([...span]);}
+    rows.push(merged.flatMap(([a,b])=>[a,b-a]));
+   }
+   mask={scale,n:columns,columns,heightCells:rowsCount,rows};
+  }
+  water={...sourceWater,polygons,mask};
+ }
+ const avoid=(info.avoid||[]).map(a=>({kind:a[4]||'feature',cx:Math.round(a[0]*sx),cy:Math.round(a[1]*sy),rx:Math.round(a[2]*sx),ry:Math.round(a[3]*sy)}));
+ return {roads,water,avoid};
+}
+function mapData(){const info=s.meta?.overlays[s.overlay]||{},overData=scaledOverlayMetadata(info);return {format:s.meta?'forest-map-kit-map':'spirewrought-mapforge-map',version:2,generator:'SpireWrought Map Forge V2.3',seed:String($('seed').value),theme:$('theme').value,size:[MAP_WIDTH,MAP_HEIGHT],pixelsPerMetre:37,ground:{tile:s.meta?s.tile:null,overlay:s.meta?s.overlay:null},roadsAtEdges:overData.roads,water:overData.water,noGo:overData.avoid,objects:[...s.objects].sort((a,b)=>((a.collision==='ground'?0:1)-(b.collision==='ground'?0:1))||a.sortY-b.sortY),world:{x:s.worldX,y:s.worldY},markers:s.markers.map(m=>({...m})),collisionPaint:s.collisionPaint.map(c=>({...c})),autoBlend:!!s.autoBlend,custom:{tileSize:32,groundFill:s.groundFill?'assets/'+s.groundFill+'.png':null,groundAssetId:s.groundFill||null,tiles:s.tileStamps.map(t=>({file:'assets/'+t.id+'.png',assetId:t.id,x:t.x,y:t.y,blocked:!!customAsset('custom:'+t.id)?.solid})),assets:s.customAssets.map(a=>({id:a.id,name:a.name,kind:a.kind,size:[a.size,a.size],collision:a.solid?'standing':'none',file:'assets/'+a.id+'.png'}))}};}
+function recipe(){return {format:'spirewrought-mapforge',version:4,name:$('mapName').value,size:[MAP_WIDTH,MAP_HEIGHT],seed:String($('seed').value),theme:$('theme').value,density:$('density').value,tile:s.tile,overlay:s.overlay,objects:s.objects.map(o=>({file:o.file,footX:o.footX,footY:o.footY,generated:!!o.generated})),tileStamps:s.tileStamps.map(t=>({...t})),markers:s.markers.map(m=>({...m})),collisionPaint:s.collisionPaint.map(c=>({...c})),worldX:s.worldX,worldY:s.worldY,autoBlend:s.autoBlend,groundFill:s.groundFill,customAssets:s.customAssets.map(a=>({...a}))};}
 let saveTimer=null,loadingStoredState=true;
 function persist(){if(loadingStoredState)return;clearTimeout(saveTimer);saveTimer=setTimeout(()=>{idbPut('projects','active',recipe()).catch(err=>{console.warn('Map autosave failed',err);toast('Autosave failed; export a project backup.')})},350)}
 function restore(data){if(data.format!=='spirewrought-mapforge')throw Error('Not a Map Forge project');
@@ -139,6 +174,7 @@ function restore(data){if(data.format!=='spirewrought-mapforge')throw Error('Not
  if(needsKit&&!s.meta)throw Error('This project uses the Forest Kit. Load the original ZIP first, then reopen this project.');
  if(s.meta){s.tile=s.meta.tiles[data.tile]?data.tile:Object.keys(s.meta.tiles)[0];s.overlay=s.meta.overlays[data.overlay]?data.overlay:Object.keys(s.meta.overlays)[0];$('tile').value=s.tile;$('overlay').value=s.overlay}
  $('mapName').value=data.name||'Map';$('seed').value=data.seed||412038;$('theme').value=data.theme||'forest';$('density').value=data.density||'medium';
+ const savedSize=Array.isArray(data.size)?data.size:[1254,1254];setMapDimensions(clamp(Math.trunc(+savedSize[0]||1254),256,3072),clamp(Math.trunc(+savedSize[1]||1254),256,3072),false);
  if(Array.isArray(data.customAssets)){const imported=data.customAssets.filter(x=>x&&/^[a-zA-Z0-9_-]+$/.test(x.id)&&['tile','object'].includes(x.kind)&&[32,64,96,128].includes(x.size)&&typeof x.png==='string'&&x.png.startsWith('data:image/png;base64,')).slice(0,70);
  const keys=new Set(imported.map(x=>x.id)),preserved=s.customAssets.filter(x=>!keys.has(x.id));
  if(imported.length+preserved.length>70)throw Error('Import would exceed the 70-asset limit. Back up and remove unused assets before opening this map. Your current library was kept.');
@@ -147,38 +183,60 @@ function restore(data){if(data.format!=='spirewrought-mapforge')throw Error('Not
  s.worldY=clamp(Math.trunc(Number(data.worldY??data.world?.y)||0),-999,999);
  $('worldX').value=s.worldX;$('worldY').value=s.worldY;
  s.autoBlend=!!data.autoBlend;$('autoBlend').checked=s.autoBlend;
- s.markers=(data.markers||[]).filter(m=>m&&typeof m.type==='string'&&Number.isFinite(+m.x)&&Number.isFinite(+m.y)).map(m=>({id:String(m.id||'m'+Math.random().toString(36).slice(2)),type:m.type,label:String(m.label||'').slice(0,70),target:String(m.target||'').slice(0,90),x:clamp(Math.round(m.x),0,SIZE-1),y:clamp(Math.round(m.y),0,SIZE-1)})).slice(0,500);
- s.collisionPaint=(data.collisionPaint||[]).filter(c=>c&&Number.isFinite(+c.x)&&Number.isFinite(+c.y)).map(c=>({x:clampTile(c.x),y:clampTile(c.y),blocked:!!c.blocked})).slice(0,1600);
+ s.markers=(data.markers||[]).filter(m=>m&&typeof m.type==='string'&&Number.isFinite(+m.x)&&Number.isFinite(+m.y)).map(m=>({id:String(m.id||'m'+Math.random().toString(36).slice(2)),type:m.type,label:String(m.label||'').slice(0,70),target:String(m.target||'').slice(0,90),x:clamp(Math.round(m.x),0,MAP_WIDTH-1),y:clamp(Math.round(m.y),0,MAP_HEIGHT-1)})).slice(0,500);
+ s.collisionPaint=(data.collisionPaint||[]).filter(c=>c&&Number.isFinite(+c.x)&&Number.isFinite(+c.y)).map(c=>({x:clampTileX(c.x),y:clampTileY(c.y),blocked:!!c.blocked})).slice(0,1600);
  s.groundFill=customAsset('custom:'+(data.groundFill||''))?.kind==='tile'?data.groundFill:'';
- s.tileStamps=(data.tileStamps||[]).filter(t=>customAsset('custom:'+t.id)?.kind==='tile').map(t=>({id:t.id,x:clampTile(t.x),y:clampTile(t.y)}));
- s.objects=(data.objects||[]).filter(o=>o&&typeof o.file==='string'&&(customAsset(o.file)||s.meta?.objects[o.file])).map(o=>objectAt(o.file,o.footX,o.footY));
+ s.tileStamps=(data.tileStamps||[]).filter(t=>customAsset('custom:'+t.id)?.kind==='tile').map(t=>({id:t.id,x:clampTileX(t.x),y:clampTileY(t.y)}));
+ s.objects=(data.objects||[]).filter(o=>o&&typeof o.file==='string'&&(customAsset(o.file)||s.meta?.objects[o.file])).map(o=>({...objectAt(o.file,o.footX,o.footY),generated:!!o.generated})).filter(o=>o.x>=0&&o.y>=0&&o.x+o.w<=MAP_WIDTH&&o.y+o.h<=MAP_HEIGHT);
  s.selected=-1;s.history=[];select(-1);refreshCustomControls();renderMarkers();updateWorldStatus();updateStats();paint();persist();}
 function updateStats(){$('objectCount').textContent=s.objects.length;$('tileCount').textContent=s.tileStamps.length;$('blockCount').textContent=s.objects.filter(x=>x.collision!=='none').length+s.tileStamps.filter(t=>customAsset('custom:'+t.id)?.solid).length;
  for(const id of ['bundle','png','objectsPng','mapJson','collisionPng','projectSave','librarySave'])$(id).disabled=false;
- $('clear').disabled=!s.objects.length&&!s.tileStamps.length;$('undo').disabled=!s.history.length;$('quickGen').disabled=!s.meta;}
-function history(){s.history.push({objects:s.objects.map(o=>({file:o.file,footX:o.footX,footY:o.footY})),tiles:s.tileStamps.map(t=>({...t})),groundFill:s.groundFill,markers:s.markers.map(m=>({...m})),collisionPaint:s.collisionPaint.map(c=>({...c}))});if(s.history.length>30)s.history.shift();$('undo').disabled=false;}
+ $('clear').disabled=!s.objects.length&&!s.tileStamps.length;$('undo').disabled=!s.history.length;$('quickGen').disabled=!s.meta&&!s.customAssets.some(a=>a.kind==='object');$('generate').disabled=$('quickGen').disabled;}
+function history(){s.history.push({objects:s.objects.map(o=>({file:o.file,footX:o.footX,footY:o.footY,generated:!!o.generated})),size:[MAP_WIDTH,MAP_HEIGHT],tiles:s.tileStamps.map(t=>({...t})),groundFill:s.groundFill,markers:s.markers.map(m=>({...m})),collisionPaint:s.collisionPaint.map(c=>({...c}))});if(s.history.length>30)s.history.shift();$('undo').disabled=false;}
 function seeded(seed){let x=Number(seed)>>>0||1;return()=>{x^=x<<13;x^=x>>>17;x^=x<<5;return (x>>>0)/4294967296}}
 function weights(theme){return ({forest:{pine:7,'broadleaf-tree':6,bush:9,rock:4,stump:4,'fern-grass':8,mushroom:4,branch:3,log:3},dense:{pine:12,'broadleaf-tree':11,bush:12,rock:3,stump:4,'fern-grass':9},clearing:{bush:4,'fern-grass':12,mushroom:5,rock:3,branch:4},mystic:{pine:5,'giant-mushroom':9,mushroom:10,totem:2,rock:3,bush:5},ruins:{'dead-tree':8,rock:6,stump:5,stake:8,bone:9,totem:3,branch:4,log:3,camp:3}})[theme]||{};}
-function blockedPosition(x,y,obj){const over=s.meta?.overlays[s.overlay]||{};for(const a of over.avoid||[]){if(((x-a[0])/Math.max(1,a[2]))**2+((y-a[1])/Math.max(1,a[3]))**2<1)return true}
- const mask=over.water?.mask;if(mask?.rows){const col=Math.floor(x/mask.scale),row=Math.floor(y/mask.scale);for(const [i,v] of (mask.rows[row]||[]).entries())if(i%2===0&&col>=v&&col<v+mask.rows[row][i+1])return true}
+function blockedPosition(x,y,obj){const over=s.meta?.overlays[s.overlay]||{};for(const a of over.avoid||[]){if(((x-a[0]*MAP_WIDTH/1254)/Math.max(1,a[2]*MAP_WIDTH/1254))**2+((y-a[1]*MAP_HEIGHT/1254)/Math.max(1,a[3]*MAP_HEIGHT/1254))**2<1)return true}
+ const mask=over.water?.mask;if(mask?.rows){const col=Math.floor(x*1254/MAP_WIDTH/mask.scale),row=Math.floor(y*1254/MAP_HEIGHT/mask.scale);for(const [i,v] of (mask.rows[row]||[]).entries())if(i%2===0&&col>=v&&col<v+mask.rows[row][i+1])return true}
  if(obj.collision!=='none')for(const o of s.objects)if(o.collision!=='none'&&Math.abs(o.footX-x)<Math.min(140,Math.max(35,(o.w+obj.w)*.22))&&Math.abs(o.footY-y)<65)return true;
  return false;}
-function generate(){if(!s.meta)return;history();s.tile=$('tile').value;s.overlay=$('overlay').value;const seed=clamp(parseInt($('seed').value,10)||1,1,2147483647),rng=seeded(seed);$('seed').value=seed;
- const w=weights($('theme').value),choices=Object.entries(s.meta.objects).map(([file,o])=>({file,weight:w[file.split('/')[1]]||0,size:o.size})).filter(o=>o.weight&&o.size[0]<450&&o.size[1]<700);
- const total=choices.reduce((n,x)=>n+x.weight,0);if(!choices.length){toast('No suitable objects found');return}
- s.objects=s.objects.filter(obj=>obj.file.startsWith('custom:'));const goal=({sparse:40,medium:75,dense:120})[$('density').value]||75;
- for(let tries=0;tries<goal*55&&s.objects.filter(o=>!o.file.startsWith('custom:')).length<goal;tries++){let r=rng()*total,item=choices[0];for(const c of choices){r-=c.weight;if(r<=0){item=c;break}}
-  const x=50+Math.floor(rng()*(SIZE-100)),y=60+Math.floor(rng()*(SIZE-120)),ob=objectAt(item.file,x,y);const distance=Math.hypot(x-SIZE/2,y-SIZE/2);
-  if(distance<($('theme').value==='clearing'?290:178))continue;
-  if(ob.x<0||ob.y<0||ob.x+ob.w>SIZE||ob.y+ob.h>SIZE||blockedPosition(x,y,ob))continue;s.objects.push(ob);
+function generate(){
+ const useKit=!!s.meta,ownObjects=s.customAssets.filter(a=>a.kind==='object');
+ if(!useKit&&!ownObjects.length)return toast('Load the Forest Kit or create custom objects in Tiles & Objects first');
+ const seed=clamp(parseInt($('seed').value,10)||1,1,2147483647),rng=seeded(seed);$('seed').value=seed;
+ if(useKit){s.tile=$('tile').value;s.overlay=$('overlay').value;}
+ const weightTable=weights($('theme').value),choices=useKit?Object.entries(s.meta.objects)
+   .map(([file,o])=>({file,weight:weightTable[file.split('/')[1]]||0,size:o.size}))
+   .filter(o=>o.weight&&o.size[0]<=MAP_WIDTH*.70&&o.size[1]<=MAP_HEIGHT*.85):[];
+ for(const a of ownObjects)if(a.size<=MAP_WIDTH&&a.size<=MAP_HEIGHT)choices.push({file:'custom:'+a.id,weight:6,size:[a.size,a.size]});
+ const total=choices.reduce((n,x)=>n+x.weight,0);
+ if(!total)return toast('No suitable objects fit this map. Try making the map larger.');
+ const replaceExisting=$('replaceGenerated').checked;
+ if(replaceExisting&&s.objects.length&&!confirm('Replace '+s.objects.length+' placed objects with generated objects? Your tile painting, collision and markers will stay.'))return;
+ history();
+ if(replaceExisting)s.objects=[];else s.objects=s.objects.filter(o=>!o.generated);
+ const density=({sparse:40,medium:75,dense:120})[$('density').value]||75;
+ const areaScale=MAP_WIDTH*MAP_HEIGHT/(1254*1254),goal=clamp(Math.round(density*areaScale),5,500);
+ const clearing=($('theme').value==='clearing'?290:178)*Math.min(MAP_WIDTH,MAP_HEIGHT)/1254;
+ let count=0;
+ for(let tries=0;tries<goal*85&&count<goal;tries++){
+  let weight=rng()*total,item=choices[0];for(const candidate of choices){weight-=candidate.weight;if(weight<=0){item=candidate;break}}
+  const candidateWidth=item.size[0],candidateHeight=item.size[1];
+  const x=Math.floor(candidateWidth/2+rng()*Math.max(1,MAP_WIDTH-candidateWidth));
+  const y=Math.floor(candidateHeight+rng()*Math.max(1,MAP_HEIGHT-candidateHeight));
+  const object=objectAt(item.file,x,y);
+  const distance=Math.hypot((x-MAP_WIDTH/2)/Math.max(1,MAP_WIDTH),(y-MAP_HEIGHT/2)/Math.max(1,MAP_HEIGHT));
+  if(distance<clearing/Math.max(1,Math.min(MAP_WIDTH,MAP_HEIGHT)))continue;
+  if(!objectFits(object)||blockedPosition(x,y,object))continue;
+  object.generated=true;s.objects.push(object);count++;
  }
- select(-1);updateStats();paint();persist();toast('Generated '+s.objects.length+' objects from seed '+seed);}
+ select(-1);updateStats();paint();persist();toast('Generated '+count+' objects with seed '+seed+' · '+MAP_WIDTH+'×'+MAP_HEIGHT);
+}
 // Paint original repeating/stamped terrain with optional deterministic auto-transition edges.
 async function drawCustomGround(context){
  const stampLookup=new Map(s.tileStamps.map(t=>[t.x+','+t.y,t]));
  const tileIds=new Set(s.tileStamps.map(t=>t.id));if(s.groundFill)tileIds.add(s.groundFill);
  const bitmaps=new Map();for(const id of tileIds){try{bitmaps.set(id,await picture('custom:'+id))}catch(e){console.warn('Missing original tile',id,e)}}
- if(s.groundFill&&bitmaps.has(s.groundFill)){const tile=bitmaps.get(s.groundFill);for(let y=0;y<SIZE;y+=32)for(let x=0;x<SIZE;x+=32)context.drawImage(tile,x,y,32,32)}
+ if(s.groundFill&&bitmaps.has(s.groundFill)){const tile=bitmaps.get(s.groundFill);for(let y=0;y<MAP_HEIGHT;y+=32)for(let x=0;x<MAP_WIDTH;x+=32)context.drawImage(tile,x,y,32,32)}
  for(const t of s.tileStamps){const image=bitmaps.get(t.id);if(image)context.drawImage(image,t.x,t.y,32,32)}
  if(!s.autoBlend)return;
  // Never modify underlying tile IDs or collision. Only the visible edge pixels are blended.
@@ -195,41 +253,43 @@ async function drawCustomGround(context){
   }
  }}
 }
-async function drawScene(context,ground=true){context.clearRect(0,0,SIZE,SIZE);context.imageSmoothingEnabled=false;
- if(ground){if(s.meta){context.drawImage(await picture(s.tile),0,0,SIZE,SIZE);context.drawImage(await picture(s.overlay),0,0,SIZE,SIZE)}else{context.fillStyle='#223f32';context.fillRect(0,0,SIZE,SIZE)}
+async function drawScene(context,ground=true){context.clearRect(0,0,MAP_WIDTH,MAP_HEIGHT);context.imageSmoothingEnabled=false;
+ if(ground){if(s.meta){context.drawImage(await picture(s.tile),0,0,MAP_WIDTH,MAP_HEIGHT);context.drawImage(await picture(s.overlay),0,0,MAP_WIDTH,MAP_HEIGHT)}else{context.fillStyle='#223f32';context.fillRect(0,0,MAP_WIDTH,MAP_HEIGHT)}
   await drawCustomGround(context);
  }
  const ordered=[...s.objects].sort((a,b)=>(a.collision==='ground'?0:1)-(b.collision==='ground'?0:1)||a.sortY-b.sortY);
  for(const obj of ordered){try{context.drawImage(await picture(obj.file),obj.x,obj.y,obj.w,obj.h)}catch(e){console.warn('Asset failed',obj.file,e)}}}
 let scenePainting=false;
-const sceneBack=document.createElement('canvas');sceneBack.width=sceneBack.height=SIZE;
+const sceneBack=document.createElement('canvas');sceneBack.width=MAP_WIDTH;sceneBack.height=MAP_HEIGHT;
 async function paint(){++s.renderToken;if(scenePainting)return;scenePainting=true;try{while(true){const version=s.renderToken;
  await drawScene(sceneBack.getContext('2d'));
  if(version!==s.renderToken)continue;
- ctx.clearRect(0,0,SIZE,SIZE);ctx.drawImage(sceneBack,0,0);drawOverlay();$('viewStatus').textContent=$('mapName').value+' · '+s.objects.length+' objects';break;
+ ctx.clearRect(0,0,MAP_WIDTH,MAP_HEIGHT);ctx.drawImage(sceneBack,0,0);drawOverlay();$('viewStatus').textContent=$('mapName').value+' · '+s.objects.length+' objects';break;
  }}catch(e){console.error(e);toast('Render failed: '+e.message)}finally{scenePainting=false}}
 function poly(c,points){if(!points||points.length<3)return;c.beginPath();c.moveTo(...points[0]);for(const p of points.slice(1))c.lineTo(...p);c.closePath();c.fill()}
-function collision(c){const mask=s.meta?.overlays[s.overlay]?.water?.mask;c.fillStyle='#fff';if(s.groundFill&&customAsset('custom:'+s.groundFill)?.solid)c.fillRect(0,0,SIZE,SIZE);if(mask?.rows){for(let y=0;y<mask.rows.length;y++){const run=mask.rows[y];for(let i=0;i<run.length;i+=2)c.fillRect(run[i]*mask.scale,y*mask.scale,run[i+1]*mask.scale,mask.scale)}}
+function collision(c){const mask=s.meta?.overlays[s.overlay]?.water?.mask;c.fillStyle='#fff';if(s.groundFill&&customAsset('custom:'+s.groundFill)?.solid)c.fillRect(0,0,MAP_WIDTH,MAP_HEIGHT);if(mask?.rows){for(let y=0;y<mask.rows.length;y++){const run=mask.rows[y];for(let i=0;i<run.length;i+=2)c.fillRect(run[i]*mask.scale*MAP_WIDTH/1254,y*mask.scale*MAP_HEIGHT/1254,run[i+1]*mask.scale*MAP_WIDTH/1254,mask.scale*MAP_HEIGHT/1254)}}
  // Ground tiles are drawn after kit water and the base terrain; a walkable tile clears blocked water/base pixels.
  for(const t of s.tileStamps){if(customAsset('custom:'+t.id)?.solid){c.fillStyle='#fff';c.fillRect(t.x,t.y,32,32)}else c.clearRect(t.x,t.y,32,32)}
  c.fillStyle='#fff';for(const obj of s.objects)if(obj.collision!=='none'){poly(c,obj.feet);for(const p of obj.parts||[])poly(c,p)}
  for(const spot of s.collisionPaint){if(spot.blocked){c.fillStyle='#fff';c.fillRect(spot.x,spot.y,32,32)}else c.clearRect(spot.x,spot.y,32,32)}}
-function drawOverlay(){oc.clearRect(0,0,SIZE,SIZE);if($('collisionToggle').checked){oc.save();oc.globalAlpha=.4;oc.fillStyle='#f54c67';collision(oc);oc.restore()}
+function drawOverlay(){oc.clearRect(0,0,MAP_WIDTH,MAP_HEIGHT);if($('collisionToggle').checked){oc.save();oc.globalAlpha=.4;oc.fillStyle='#f54c67';collision(oc);oc.restore()}
  if(s.selected>=0&&s.objects[s.selected]){const o=s.objects[s.selected];oc.lineWidth=5;oc.strokeStyle='#ffcf81';oc.strokeRect(o.x,o.y,o.w,o.h);oc.beginPath();oc.arc(o.footX,o.footY,11,0,Math.PI*2);oc.stroke();}
  // Gameplay markers are editor-only overlay, not baked into the map artwork.
  oc.save();oc.font='bold 17px system-ui';oc.textAlign='center';oc.textBaseline='middle';for(const m of s.markers){
   oc.fillStyle='#233a4b';oc.beginPath();oc.arc(m.x,m.y,13,0,Math.PI*2);oc.fill();oc.lineWidth=3;oc.strokeStyle='#f7d591';oc.stroke();oc.fillStyle='#fff';oc.fillText(MARKER_SYMBOL[m.type]||'•',m.x,m.y);
  }oc.restore();}
-function select(index){s.selected=index;const o=s.objects[index];$('selectedBox').hidden=!o;if(o)$('selectedInfo').textContent=o.file.split('/').pop()+` · foot (${o.footX}, ${o.footY})`;drawOverlay()}
+function select(index){s.selected=index;const o=s.objects[index];$('selectedBox').hidden=!o;$('toolbarDelete').disabled=!o;if(o){$('selectedInfo').textContent=o.file.split('/').pop()+` · foot (${o.footX}, ${o.footY})`;$('selectedFootX').value=o.footX;$('selectedFootY').value=o.footY;}drawOverlay()}
 function mode(val){s.mode=val;for(const b of document.querySelectorAll('[data-mode]'))b.classList.toggle('active',b.dataset.mode===val)}
-function scenePoint(ev){const r=cv.getBoundingClientRect();return{x:clamp(Math.round((ev.clientX-r.left)*SIZE/r.width),0,SIZE),y:clamp(Math.round((ev.clientY-r.top)*SIZE/r.height),0,SIZE)}}
+function scenePoint(ev){const r=cv.getBoundingClientRect();return{x:clamp(Math.round((ev.clientX-r.left)*MAP_WIDTH/r.width),0,MAP_WIDTH-1),y:clamp(Math.round((ev.clientY-r.top)*MAP_HEIGHT/r.height),0,MAP_HEIGHT-1)}}
 let pan=null,tileStroke=null;
-const TILE_MAX=Math.floor((SIZE-32)/32)*32;
-function clampTile(value){return clamp(Math.floor(value/32)*32,0,TILE_MAX)}
-function putTileAt(x,y){if(!tileStroke)return;const target={x:clampTile(x),y:clampTile(y)},last=tileStroke.last;
+function clampTileX(value){return clamp(Math.floor(value/32)*32,0,Math.floor((MAP_WIDTH-32)/32)*32)}
+function clampTileY(value){return clamp(Math.floor(value/32)*32,0,Math.floor((MAP_HEIGHT-32)/32)*32)}
+function clampTile(value){return clampTileX(value)}
+function objectFits(o){return !!o&&o.x>=0&&o.y>=0&&o.x+o.w<=MAP_WIDTH&&o.y+o.h<=MAP_HEIGHT;}
+function putTileAt(x,y){if(!tileStroke)return;const target={x:clampTileX(x),y:clampTileY(y)},last=tileStroke.last;
  const count=last?Math.max(Math.abs(target.x-last.x),Math.abs(target.y-last.y))/32:0;let changed=false;
- for(let step=0;step<=count;step++){const tx=last?clampTile(last.x+(target.x-last.x)*step/Math.max(1,count)):target.x;
-  const ty=last?clampTile(last.y+(target.y-last.y)*step/Math.max(1,count)):target.y;
+ for(let step=0;step<=count;step++){const tx=last?clampTileX(last.x+(target.x-last.x)*step/Math.max(1,count)):target.x;
+  const ty=last?clampTileY(last.y+(target.y-last.y)*step/Math.max(1,count)):target.y;
   const ix=s.tileStamps.findIndex(t=>t.x===tx&&t.y===ty);
   if(ix>=0){if(s.tileStamps[ix].id===tileStroke.id)continue;s.tileStamps.splice(ix,1)}
   s.tileStamps.push({id:tileStroke.id,x:tx,y:ty});changed=true;
@@ -238,8 +298,8 @@ function putTileAt(x,y){if(!tileStroke)return;const target={x:clampTile(x),y:cla
 
 function paintCollisionAt(x,y){if(!tileStroke)return;const target={x:clampTile(x),y:clampTile(y)},last=tileStroke.last;
  const steps=last?Math.max(Math.abs(target.x-last.x),Math.abs(target.y-last.y))/32:0;let changed=false;
- for(let i=0;i<=steps;i++){const tx=last?clampTile(last.x+(target.x-last.x)*i/Math.max(1,steps)):target.x;
-  const ty=last?clampTile(last.y+(target.y-last.y)*i/Math.max(1,steps)):target.y;
+ for(let i=0;i<=steps;i++){const tx=last?clampTileX(last.x+(target.x-last.x)*i/Math.max(1,steps)):target.x;
+  const ty=last?clampTileY(last.y+(target.y-last.y)*i/Math.max(1,steps)):target.y;
   const at=s.collisionPaint.findIndex(c=>c.x===tx&&c.y===ty);
   if(at>=0)s.collisionPaint.splice(at,1);
   if(tileStroke.mode!=='collision-erase')s.collisionPaint.push({x:tx,y:ty,blocked:tileStroke.mode==='block'});
@@ -247,22 +307,52 @@ function paintCollisionAt(x,y){if(!tileStroke)return;const target={x:clampTile(x
  }
  tileStroke.last=target;if(changed)drawOverlay();
 }
+// Objects can be selected with a tap, dragged with touch/mouse, positioned by coordinates, or deleted.
+let objectDrag=null,fitActive=true;
+function objectHit(x,y){for(let i=s.objects.length-1;i>=0;i--){const o=s.objects[i];if(x>=o.x&&x<o.x+o.w&&y>=o.y&&y<o.y+o.h)return i}return -1}
+function moveSelectedFoot(x,y){if(s.selected<0)return false;const old=s.objects[s.selected];const next=objectAt(old.file,Math.round(x),Math.round(y));if(!objectFits(next))return false;s.objects[s.selected]={...next,generated:false};select(s.selected);return true}
 cv.addEventListener('pointerdown',ev=>{const {x,y}=scenePoint(ev);$('coords').textContent=`(${x}, ${y})`;
  if(s.mode==='pan'){pan={x:ev.clientX,y:ev.clientY,left:$('viewport').scrollLeft,top:$('viewport').scrollTop};cv.setPointerCapture(ev.pointerId);return}
+ if(s.mode==='remove-object'){
+  const i=objectHit(x,y);if(i<0)return toast('Tap an object to delete it');history();s.objects.splice(i,1);select(-1);updateStats();paint();persist();return;
+ }
  if(s.mode==='select'){
-  for(let i=s.objects.length-1;i>=0;i--){const o=s.objects[i];if(x>=o.x&&x<o.x+o.w&&y>=o.y&&y<o.y+o.h){select(i);return}}
-  if(s.selected>=0){const o=s.objects[s.selected],m=objectAt(o.file,x,y);if(m.x<0||m.y<0||m.x+m.w>SIZE||m.y+m.h>SIZE)return toast('Object must fit on map');history();s.objects[s.selected]=m;select(s.selected);paint();persist();return}
+  const hit=objectHit(x,y);
+  if(hit>=0){select(hit);const o=s.objects[hit];objectDrag={index:hit,pointerId:ev.pointerId,startX:x,startY:y,footX:o.footX,footY:o.footY,changed:false};cv.setPointerCapture(ev.pointerId);return;}
+  if(s.selected>=0){const old=s.objects[s.selected];const next=objectAt(old.file,x,y);if(!objectFits(next))return toast('Object must fit on map');history();s.objects[s.selected]={...next,generated:false};select(s.selected);paint();persist();return}
   select(-1);return;
  }
  if(s.mode==='marker'){history();const type=$('markerType').value;s.markers.push({id:'m'+Date.now().toString(36)+Math.random().toString(36).slice(2,7),type,label:$('markerLabel').value.trim().slice(0,70),target:$('markerTarget').value.trim().slice(0,90),x,y});renderMarkers();drawOverlay();persist();toast('Gameplay marker placed');return}
  if(['block','walk','collision-erase'].includes(s.mode)){history();tileStroke={mode:s.mode,last:null};cv.setPointerCapture(ev.pointerId);paintCollisionAt(x,y);persist();return}
- if(s.mode==='erase'){const tx=clampTile(x),ty=clampTile(y);const i=s.tileStamps.findLastIndex(t=>t.x===tx&&t.y===ty);if(i<0)return toast('No custom tile here');history();s.tileStamps.splice(i,1);updateStats();paint();persist();return}
+ if(s.mode==='erase'){const tx=clampTileX(x),ty=clampTileY(y);const i=s.tileStamps.findLastIndex(t=>t.x===tx&&t.y===ty);if(i<0)return toast('No custom tile here');history();s.tileStamps.splice(i,1);updateStats();paint();persist();return}
  if(!s.asset)return toast('Choose an object or tile in the Place tab');const own=customAsset(s.asset);
  if(own?.kind==='tile'){history();tileStroke={id:own.id,last:null};cv.setPointerCapture(ev.pointerId);putTileAt(x,y);updateStats();persist();return}
- const obj=objectAt(s.asset,x,y);if(obj.x<0||obj.y<0||obj.x+obj.w>SIZE||obj.y+obj.h>SIZE)return toast('Object must fit inside map');history();s.objects.push(obj);select(s.objects.length-1);updateStats();paint();persist();});
-cv.addEventListener('pointermove',ev=>{if(pan){$('viewport').scrollLeft=pan.left-(ev.clientX-pan.x);$('viewport').scrollTop=pan.top-(ev.clientY-pan.y)}else if(tileStroke){ev.preventDefault();const xy=scenePoint(ev);if(tileStroke.mode)paintCollisionAt(xy.x,xy.y);else putTileAt(xy.x,xy.y)}});
-for(const evt of ['pointerup','pointercancel','lostpointercapture'])cv.addEventListener(evt,()=>{if(tileStroke){tileStroke=null;updateStats();drawOverlay();persist()}pan=null});
-function zoom(v){s.zoom=clamp(v,.5,4);$('scene').style.width=Math.max(280,$('viewport').clientWidth-3)*s.zoom+'px';$('zoomLabel').textContent=Math.round(s.zoom*100)+'%'}
+ const obj=objectAt(s.asset,x,y);if(!objectFits(obj))return toast('Object must fit inside map');history();s.objects.push({...obj,generated:false});select(s.objects.length-1);updateStats();paint();persist();
+});
+cv.addEventListener('pointermove',ev=>{
+ if(pan){$('viewport').scrollLeft=pan.left-(ev.clientX-pan.x);$('viewport').scrollTop=pan.top-(ev.clientY-pan.y);return}
+ if(objectDrag&&objectDrag.pointerId===ev.pointerId){ev.preventDefault();const pt=scenePoint(ev),dx=pt.x-objectDrag.startX,dy=pt.y-objectDrag.startY;
+  if(!objectDrag.changed&&Math.abs(dx)+Math.abs(dy)<2)return;
+  const old=s.objects[objectDrag.index],next=objectAt(old.file,objectDrag.footX+dx,objectDrag.footY+dy);
+  if(!objectFits(next))return;
+  if(!objectDrag.changed){history();objectDrag.changed=true;}
+  s.objects[objectDrag.index]={...next,generated:false};select(objectDrag.index);paint();return;
+ }
+ if(tileStroke){ev.preventDefault();const xy=scenePoint(ev);if(tileStroke.mode)paintCollisionAt(xy.x,xy.y);else putTileAt(xy.x,xy.y)}
+});
+for(const evt of ['pointerup','pointercancel','lostpointercapture'])cv.addEventListener(evt,ev=>{
+ if(objectDrag&&ev.pointerId===objectDrag.pointerId){if(objectDrag.changed){paint();persist();}objectDrag=null}
+ if(tileStroke){tileStroke=null;updateStats();drawOverlay();persist()}pan=null;
+});
+function zoom(v){fitActive=false;s.zoom=clamp(v,.05,4);const scn=$('scene');scn.style.width=Math.round(MAP_WIDTH*s.zoom)+'px';scn.style.height=Math.round(MAP_HEIGHT*s.zoom)+'px';$('zoomLabel').textContent=Math.round(s.zoom*100)+'%';}
+function fitMap(){fitActive=true;const viewport=$('viewport');const availableWidth=Math.max(100,viewport.clientWidth-12),availableHeight=Math.max(100,viewport.clientHeight-12);const scale=clamp(Math.min(availableWidth/MAP_WIDTH,availableHeight/MAP_HEIGHT),.05,4);s.zoom=scale;$('scene').style.width=Math.round(MAP_WIDTH*scale)+'px';$('scene').style.height=Math.round(MAP_HEIGHT*scale)+'px';$('zoomLabel').textContent=Math.round(scale*100)+'% · Full';viewport.scrollTo(0,0);}
+function setMapDimensions(w,h,keep=true){w=Math.trunc(w);h=Math.trunc(h);if(w<256||h<256||w>3072||h>3072||w*h>4194304)throw Error('Map size must be 256–3072 pixels on each axis, with area no more than 4.2 million pixels');
+ MAP_WIDTH=w;MAP_HEIGHT=h;cv.width=ov.width=sceneBack.width=w;cv.height=ov.height=sceneBack.height=h;
+ $('mapWidth').value=w;$('mapHeight').value=h;$('mapSizeStat').textContent=w+'×'+h;$('coords').textContent=w+' × '+h;
+ const preset=w+'x'+h;$('mapPreset').value=[...$('mapPreset').options].some(o=>o.value===preset)?preset:'custom';
+ if(keep){s.objects=s.objects.filter(objectFits);s.tileStamps=s.tileStamps.filter(t=>t.x>=0&&t.y>=0&&t.x+32<=w&&t.y+32<=h);s.collisionPaint=s.collisionPaint.filter(c=>c.x>=0&&c.y>=0&&c.x<w&&c.y<h);s.markers=s.markers.filter(m=>m.x>=0&&m.y>=0&&m.x<w&&m.y<h);select(-1);renderMarkers();updateStats();}
+ requestAnimationFrame(fitMap);++s.renderToken;paint();persist();
+}
 function preview(path){const b=document.createElement('button');b.className='object-btn';b.dataset.path=path;const img=document.createElement('img'),label=document.createElement('small');label.textContent=customAsset(path)?.name||path.split('/').pop().replace('.png','');b.append(img,label);
  b.onclick=()=>{s.asset=path;for(const item of $('palette').children)item.classList.toggle('active',item===b);mode('place');toast('Tap the map to place '+label.textContent)};
  picture(path).then(bitmap=>{const t=document.createElement('canvas');t.width=88;t.height=70;const c=t.getContext('2d'),scale=Math.min(88/bitmap.width,70/bitmap.height);c.drawImage(bitmap,(88-bitmap.width*scale)/2,(70-bitmap.height*scale)/2,bitmap.width*scale,bitmap.height*scale);img.src=t.toDataURL('image/png')}).catch(console.warn);return b;}
@@ -291,10 +381,10 @@ const basename=()=>($('mapName').value.trim()||'forest_map').replace(/[^\w-]+/g,
 function download(blob,name){const el=$('download'),url=URL.createObjectURL(blob);el.href=url;el.download=name;el.click();setTimeout(()=>URL.revokeObjectURL(url),20000)}
 function jsonDownload(data,name){download(new Blob([JSON.stringify(data,null,2)],{type:'application/json'}),name)}
 function pngBlob(canvas){return new Promise((ok,fail)=>canvas.toBlob(blob=>blob?ok(blob):fail(Error('Cannot create PNG')),'image/png'))}
-async function imageBlob(ground){const c=document.createElement('canvas');c.width=c.height=SIZE;await drawScene(c.getContext('2d'),ground);return pngBlob(c)}
-async function customTilesBlob(){const c=document.createElement('canvas');c.width=c.height=SIZE;const cx=c.getContext('2d');cx.imageSmoothingEnabled=false;
+async function imageBlob(ground){const c=document.createElement('canvas');c.width=MAP_WIDTH;c.height=MAP_HEIGHT;await drawScene(c.getContext('2d'),ground);return pngBlob(c)}
+async function customTilesBlob(){const c=document.createElement('canvas');c.width=MAP_WIDTH;c.height=MAP_HEIGHT;const cx=c.getContext('2d');cx.imageSmoothingEnabled=false;
  await drawCustomGround(cx);return pngBlob(c)}
-async function collisionBlob(){const c=document.createElement('canvas');c.width=c.height=SIZE;const cx=c.getContext('2d');cx.fillStyle='#000';cx.fillRect(0,0,SIZE,SIZE);collision(cx);cx.save();cx.globalCompositeOperation='destination-over';cx.fillStyle='#000';cx.fillRect(0,0,SIZE,SIZE);cx.restore();return pngBlob(c)}
+async function collisionBlob(){const c=document.createElement('canvas');c.width=MAP_WIDTH;c.height=MAP_HEIGHT;const cx=c.getContext('2d');cx.fillStyle='#000';cx.fillRect(0,0,MAP_WIDTH,MAP_HEIGHT);collision(cx);cx.save();cx.globalCompositeOperation='destination-over';cx.fillStyle='#000';cx.fillRect(0,0,MAP_WIDTH,MAP_HEIGHT);cx.restore();return pngBlob(c)}
 const CRC=(()=>{const a=new Uint32Array(256);for(let i=0;i<256;i++){let c=i;for(let n=0;n<8;n++)c=(c&1)?0xedb88320^(c>>>1):c>>>1;a[i]=c>>>0}return a})();
 function crc(bytes){let v=0xffffffff;for(const n of bytes)v=CRC[(v^n)&255]^(v>>>8);return(v^0xffffffff)>>>0}
 function makeZip(files){const local=[],central=[];let pos=0;const u=(v,n)=>Array.from({length:n},(_,i)=>(v>>>(i*8))&255);
@@ -305,14 +395,14 @@ function makeZip(files){const local=[],central=[];let pos=0;const u=(v,n)=>Array
  }
  const centralSize=central.reduce((n,x)=>n+x.length,0),eocd=Uint8Array.from([...u(0x06054b50,4),...u(0,2),...u(0,2),...u(files.length,2),...u(files.length,2),...u(centralSize,4),...u(pos,4),...u(0,2)]);return new Blob([...local,...central,eocd],{type:'application/zip'});
 }
-async function unityBundle(){const b=$('bundle');b.disabled=true;b.textContent='Building ZIP…';try{const [map,obj,tilesImg,collisionImg]=await Promise.all([imageBlob(true),imageBlob(false),customTilesBlob(),collisionBlob()]);const guide=`SpireWrought Map Forge — Unity forest map\n\nArt: Tiny Realms Forest Map Kit v2.0 (user-owned)\nMap size: 1254x1254 px, kit pixels per metre: 37\n1. Keep the original licensed ForestMapKit folder in your PRIVATE Unity project.\n2. map.png is a static composite preview/background.\n3. To use scene objects and proper depth sorting, import map.json and resolve each object.file relative to ForestMapKit.\n4. Sort by sortY; actor depth sorts by actor feet Y.\n5. Objects collision feet / parts and water mask are blocking; noGo is placement-only.\n6. collision.png uses white = blocked, black = walkable. Manually painted walk/block cells override base mask.\n7. Place sprites with pivot ((footX-x)/w, 1-(footY-y)/h) in Unity normalized units.\n8. map.json includes gameplay markers, world cell coordinates, and collisionPaint grid overrides.
+async function unityBundle(){const b=$('bundle');b.disabled=true;b.textContent='Building ZIP…';try{const [map,obj,tilesImg,collisionImg]=await Promise.all([imageBlob(true),imageBlob(false),customTilesBlob(),collisionBlob()]);const guide=`SpireWrought Map Forge — Unity forest map\n\nArt: Tiny Realms Forest Map Kit v2.0 (user-owned)\nMap size: ${MAP_WIDTH}x${MAP_HEIGHT} px, kit pixels per metre: 37\n1. Keep the original licensed ForestMapKit folder in your PRIVATE Unity project.\n2. map.png is a static composite preview/background.\n3. To use scene objects and proper depth sorting, import map.json and resolve each object.file relative to ForestMapKit.\n4. Sort by sortY; actor depth sorts by actor feet Y.\n5. Objects collision feet / parts and water mask are blocking; noGo is placement-only.\n6. collision.png uses white = blocked, black = walkable. Manually painted walk/block cells override base mask.\n7. Place sprites with pivot ((footX-x)/w, 1-(footY-y)/h) in Unity normalized units.\n8. map.json includes gameplay markers, world cell coordinates, and collisionPaint grid overrides.
 9. See Unity/Editor/MapForgeImporter.cs in the SpriteForge repo to import the exported ZIP directly into Unity.
 10. Keep monster sprite sizes in mind: kit assumes people around 63 pixels tall, whereas SpireWrought sprites may be 32 pixels. Adjust scale in Unity.\n\nDo not redistribute the original raw asset files as a public tool or library.\n`;
  const files=[['map.json',JSON.stringify(mapData(),null,2)],['mapforge-project.json',JSON.stringify(recipe(),null,2)],['map.png',new Uint8Array(await map.arrayBuffer())],['objects.png',new Uint8Array(await obj.arrayBuffer())],['custom-tiles.png',new Uint8Array(await tilesImg.arrayBuffer())],['collision.png',new Uint8Array(await collisionImg.arrayBuffer())],['README.txt',guide+'\nOwn tile/object images: assets/*.png. Custom tile map layer: map.json custom.tiles, custom.groundFill. Original kit files must be supplied separately.\n']];
  for(const a of s.customAssets){const binary=atob(a.png.split(',')[1]);files.push(['assets/'+a.id+'.png',Uint8Array.from(binary,c=>c.charCodeAt(0))])} 
  download(makeZip(files),basename()+'_unity_map.zip');toast('Unity map bundle ready');}catch(e){console.error(e);toast('Export failed: '+e.message)}finally{b.disabled=false;b.textContent='↓ Unity map bundle ZIP'}}
 const MARKER_SYMBOL={'player-spawn':'P','enemy-spawn':'E',loot:'L',npc:'N',door:'D','stairs-up':'↑','stairs-down':'↓',teleporter:'T',interactable:'I',checkpoint:'C',boss:'B',quest:'Q'};
-function renderMarkers(){const list=$('markerList');list.replaceChildren();for(const marker of s.markers){const row=document.createElement('div');row.className='marker-row';const label=document.createElement('span');label.textContent=(MARKER_SYMBOL[marker.type]||'•')+' '+(marker.label||marker.type)+' ('+marker.x+','+marker.y+')';const focus=document.createElement('button');focus.textContent='Go';focus.onclick=()=>{switchWorkspace('map');zoom(1);const r=cv.getBoundingClientRect();$('viewport').scrollTo(Math.max(0,marker.x*r.width/SIZE-100),Math.max(0,marker.y*r.height/SIZE-100));drawOverlay()};const del=document.createElement('button');del.textContent='✕';del.setAttribute('aria-label','Remove '+marker.type);del.onclick=()=>{history();s.markers=s.markers.filter(m=>m.id!==marker.id);renderMarkers();drawOverlay();persist()};row.append(label,focus,del);list.append(row)}if(!s.markers.length)list.textContent='No gameplay markers yet.';}
+function renderMarkers(){const list=$('markerList');list.replaceChildren();for(const marker of s.markers){const row=document.createElement('div');row.className='marker-row';const label=document.createElement('span');label.textContent=(MARKER_SYMBOL[marker.type]||'•')+' '+(marker.label||marker.type)+' ('+marker.x+','+marker.y+')';const focus=document.createElement('button');focus.textContent='Go';focus.onclick=()=>{switchWorkspace('map');zoom(1);const r=cv.getBoundingClientRect();$('viewport').scrollTo(Math.max(0,marker.x*r.width/MAP_WIDTH-100),Math.max(0,marker.y*r.height/MAP_HEIGHT-100));drawOverlay()};const del=document.createElement('button');del.textContent='✕';del.setAttribute('aria-label','Remove '+marker.type);del.onclick=()=>{history();s.markers=s.markers.filter(m=>m.id!==marker.id);renderMarkers();drawOverlay();persist()};row.append(label,focus,del);list.append(row)}if(!s.markers.length)list.textContent='No gameplay markers yet.';}
 $('clearCollision').onclick=()=>{if(!s.collisionPaint.length)return;if(!confirm('Clear all painted collision overrides on this cell?'))return;history();s.collisionPaint=[];drawOverlay();persist()};
 $('autoBlend').onchange=()=>{s.autoBlend=$('autoBlend').checked;paint();persist()};
 // Versioned IndexedDB, upgrades preserve the original licensed-kit file store.
@@ -328,7 +418,7 @@ async function moveWorld(dx,dy){try{await saveWorldCell();const x=clamp(s.worldX
 $('worldSave').onclick=()=>saveWorldCell().catch(e=>toast('Save failed: '+e.message));
 for(const [id,dx,dy] of [['worldN',0,-1],['worldS',0,1],['worldE',1,0],['worldW',-1,0]])$(id).onclick=()=>moveWorld(dx,dy);
 for(const id of ['worldX','worldY'])$(id).onchange=()=>{const requestedX=clamp(Math.trunc(+$('worldX').value||0),-999,999),requestedY=clamp(Math.trunc(+$('worldY').value||0),-999,999);$('worldX').value=s.worldX;$('worldY').value=s.worldY;if(requestedX!==s.worldX||requestedY!==s.worldY)void (async()=>{try{await saveWorldCell();const target=await idbGet('world',worldKey(requestedX,requestedY));if(target)restore(target);else{await moveWorld(requestedX-s.worldX,requestedY-s.worldY)}}catch(e){toast(e.message)}})()};
-$('worldExport').onclick=async()=>{try{await saveWorldCell();const cells=await idbAll('world');const world={format:'spirewrought-mapforge-world',version:1,cellPixels:SIZE,cells:cells.map(c=>({x:c.worldX||0,y:c.worldY||0,map:c})),note:'Contains user art and recipes; licensed Forest Kit art must be loaded separately.'};jsonDownload(world,'spirewrought_world.mapforge.json');toast(cells.length+' connected world cells exported')}catch(e){toast('World export failed: '+e.message)}};
+$('worldExport').onclick=async()=>{try{await saveWorldCell();const cells=await idbAll('world');const world={format:'spirewrought-mapforge-world',version:1,cellPixels:SIZE,variableCellSizes:true,cells:cells.map(c=>({x:c.worldX||0,y:c.worldY||0,map:c})),note:'Contains user art and recipes; licensed Forest Kit art must be loaded separately.'};jsonDownload(world,'spirewrought_world.mapforge.json');toast(cells.length+' connected world cells exported')}catch(e){toast('World export failed: '+e.message)}};
 $('worldImport').onclick=()=>$('worldImportInput').click();$('worldImportInput').onchange=async()=>{try{const file=$('worldImportInput').files?.[0];if(!file)return;const data=JSON.parse(await file.text());if(data.format!=='spirewrought-mapforge-world'||!Array.isArray(data.cells))throw Error('Not a Map Forge world backup');if(data.cells.length>100)throw Error('World backup exceeds 100 cells');if(!confirm('Import '+data.cells.length+' world cells? Existing cells with matching coordinates will be overwritten.'))return;for(const cell of data.cells){if(!cell.map||cell.map.format!=='spirewrought-mapforge')throw Error('Invalid cell in backup');const x=clamp(Math.trunc(+cell.x||0),-999,999),y=clamp(Math.trunc(+cell.y||0),-999,999);await idbPut('world',worldKey(x,y),{...cell.map,worldX:x,worldY:y})}toast(data.cells.length+' cells imported; use arrows to open them')}catch(e){toast('World import failed: '+e.message)}finally{$('worldImportInput').value=''}};
 $('backupAll').onclick=async()=>{try{await idbPut('projects','active',recipe());const bundle={format:'spirewrought-mapforge-full-backup',version:1,active:recipe(),savedMaps:s.savedMaps,originalAssets:s.customAssets,worldCells:await idbAll('world'),createdAt:new Date().toISOString()};jsonDownload(bundle,'spirewrought_mapforge_full_backup.json');toast('Full backup downloaded')}catch(e){toast('Backup failed: '+e.message)}};
 async function hydrateStorage(){try{let art=await idbGet('art','library');if(!Array.isArray(art)||!art.length){art=s.customAssets;if(art.length)await idbPut('art','library',art)}if(Array.isArray(art)&&art.length){s.customAssets=art;s.customImages.clear();refreshCustomControls();renderAssetLibrary()}
@@ -342,15 +432,26 @@ async function hydrateStorage(){try{let art=await idbGet('art','library');if(!Ar
 function needsOriginalKit(data){return !!data?.tile?.startsWith('tiles/')||(data?.objects||[]).some(o=>!o.file?.startsWith('custom:'))}
 $('loadKit').onclick=()=>$('kitInput').click();$('kitInput').onchange=()=>{const f=$('kitInput').files?.[0];if(f)loadKit(f)};$('keepKit').onclick=offlineSave;
 $('tile').onchange=()=>{s.tile=$('tile').value;paint();persist()};$('overlay').onchange=()=>{s.overlay=$('overlay').value;paint();persist()};
+$('mapPreset').onchange=()=>{const v=$('mapPreset').value;if(v==='custom')return;const [w,h]=v.split('x').map(Number);$('mapWidth').value=w;$('mapHeight').value=h;};
+$('applyMapSize').onclick=()=>{const w=Math.trunc(+$('mapWidth').value),h=Math.trunc(+$('mapHeight').value);if(!Number.isFinite(w)||!Number.isFinite(h)||w<256||h<256||w>3072||h>3072||w*h>4194304){toast('Choose 256–3072 pixels each, up to 4.2 million total');return;}
+ if(w===MAP_WIDTH&&h===MAP_HEIGHT){fitMap();return}
+ const cut=s.objects.some(o=>o.x+o.w>w||o.y+o.h>h)||s.tileStamps.some(t=>t.x+32>w||t.y+32>h)||s.markers.some(m=>m.x>=w||m.y>=h)||s.collisionPaint.some(c=>c.x>=w||c.y>=h);
+ if(cut&&!confirm('Reducing this map will remove objects, tiles and markers outside its new boundaries. Continue?')){$('mapWidth').value=MAP_WIDTH;$('mapHeight').value=MAP_HEIGHT;return;}
+ history();try{setMapDimensions(w,h,true);toast('Map resized to '+w+' × '+h);}catch(e){toast(e.message)};
+};
+$('fitMapButton').onclick=fitMap;
+$('toolbarMove').onclick=()=>{mode('select');for(const tab of document.querySelectorAll('[data-tab]'))tab.classList.toggle('active',tab.dataset.tab==='place');for(const tab of ['generate','place','export'])$('tab-'+tab).hidden=tab!=='place';toast('Tap an object, then drag to move it');};
+$('toolbarDelete').onclick=()=>{if(s.selected<0)return;history();s.objects.splice(s.selected,1);select(-1);updateStats();paint();persist();toast('Object deleted — Undo to restore')};
+$('moveSelectedTo').onclick=()=>{if(s.selected<0)return;const next=objectAt(s.objects[s.selected].file,+$('selectedFootX').value,+$('selectedFootY').value);if(!objectFits(next))return toast('Position is outside the map');history();moveSelectedFoot(next.footX,next.footY);paint();persist();};
 $('category').onchange=()=>{s.category=$('category').value;renderPalette()};$('groundFill').onchange=()=>{history();s.groundFill=$('groundFill').value.replace(/^custom:/,'');paint();persist();};$('generate').onclick=generate;$('quickGen').onclick=generate;$('newSeed').onclick=()=>{$('seed').value=Math.floor(1+Math.random()*2147483646)};
 for(const button of document.querySelectorAll('[data-tab]'))button.onclick=()=>{for(const tab of document.querySelectorAll('[data-tab]'))tab.classList.toggle('active',tab===button);for(const tab of ['generate','place','export'])$('tab-'+tab).hidden=tab!==button.dataset.tab};
 for(const button of document.querySelectorAll('[data-mode]'))button.onclick=()=>{if(button.dataset.mode==='select')select(-1);mode(button.dataset.mode)};
 $('remove').onclick=()=>{if(s.selected<0)return;history();s.objects.splice(s.selected,1);select(-1);updateStats();paint();persist()};
-$('duplicate').onclick=()=>{if(s.selected<0)return;const obj=s.objects[s.selected];history();const n=objectAt(obj.file,Math.min(SIZE-40,obj.footX+30),Math.min(SIZE-40,obj.footY+30));s.objects.push(n);select(s.objects.length-1);updateStats();paint();persist()};
-$('undo').onclick=()=>{if(!s.history.length)return;const old=s.history.pop();s.objects=old.objects.filter(o=>customAsset(o.file)||s.meta?.objects[o.file]).map(o=>objectAt(o.file,o.footX,o.footY));s.tileStamps=old.tiles;s.groundFill=old.groundFill;s.markers=old.markers||[];s.collisionPaint=old.collisionPaint||[];renderMarkers();select(-1);refreshCustomControls();updateStats();paint();persist()};
+$('duplicate').onclick=()=>{if(s.selected<0)return;const obj=s.objects[s.selected];history();const n=objectAt(obj.file,Math.min(MAP_WIDTH-1,obj.footX+30),Math.min(MAP_HEIGHT-1,obj.footY+30));if(!objectFits(n))return toast('No room to duplicate this object');s.objects.push({...n,generated:false});select(s.objects.length-1);updateStats();paint();persist()};
+$('undo').onclick=()=>{if(!s.history.length)return;const old=s.history.pop();if(old.size&&(old.size[0]!==MAP_WIDTH||old.size[1]!==MAP_HEIGHT))setMapDimensions(old.size[0],old.size[1],false);s.objects=old.objects.filter(o=>customAsset(o.file)||s.meta?.objects[o.file]).map(o=>({...objectAt(o.file,o.footX,o.footY),generated:!!o.generated}));s.tileStamps=old.tiles;s.groundFill=old.groundFill;s.markers=old.markers||[];s.collisionPaint=old.collisionPaint||[];renderMarkers();select(-1);refreshCustomControls();updateStats();paint();persist()};
 $('clear').onclick=()=>{if(!s.objects.length&&!s.tileStamps.length)return;if(!confirm('Clear all placed objects and painted tiles?'))return;history();s.objects=[];s.tileStamps=[];select(-1);updateStats();paint();persist()};
-$('collisionToggle').onchange=drawOverlay;$('zoomIn').onclick=()=>zoom(s.zoom*1.25);$('zoomOut').onclick=()=>zoom(s.zoom/1.25);$('fit').onclick=()=>{zoom(1);$('viewport').scrollTo(0,0)};
-window.addEventListener('resize',()=>zoom(s.zoom));$('mapName').addEventListener('change',persist);
+$('collisionToggle').onchange=drawOverlay;$('zoomIn').onclick=()=>zoom(s.zoom*1.25);$('zoomOut').onclick=()=>zoom(s.zoom/1.25);$('fit').onclick=fitMap;
+window.addEventListener('resize',()=>{if(fitActive)fitMap();else zoom(s.zoom)});$('mapName').addEventListener('change',persist);
 $('mapJson').onclick=()=>jsonDownload(mapData(),basename()+'_map.json');$('projectSave').onclick=()=>jsonDownload(recipe(),basename()+'.mapforge.json');$('bundle').onclick=unityBundle;
 $('png').onclick=async()=>{try{download(await imageBlob(true),basename()+'_map.png')}catch(e){toast(e.message)}};
 $('objectsPng').onclick=async()=>{try{download(await imageBlob(false),basename()+'_objects.png')}catch(e){toast(e.message)}};
@@ -368,7 +469,7 @@ $('projectLoad').onclick=()=>$('importProjectInput').click();$('importProjectInp
  }else{restore(data);toast('Project loaded')}}catch(e){toast('Import failed: '+e.message)}finally{$('importProjectInput').value=''}};
 $('librarySave').onclick=()=>{const item=recipe(),data=libraryData().filter(x=>x.name!==item.name);data.unshift(item);s.savedMaps=data.slice(0,20);void idbPut('projects','library',s.savedMaps).then(()=>toast('Map saved in library')).catch(e=>toast('Library storage failed: '+e.message));renderLibrary()};
 try{const saved=JSON.parse(localStorage.getItem(ART)||'[]');if(Array.isArray(saved))s.customAssets=saved.filter(a=>a&&typeof a.png==='string'&&a.png.startsWith('data:image/png;base64,')).slice(0,70)}catch(e){console.warn('Cannot load saved original art',e)}
-refreshCustomControls();zoom(1);renderMarkers();updateWorldStatus();renderLibrary();updateStats();paint();void hydrateStorage();
+refreshCustomControls();requestAnimationFrame(fitMap);renderMarkers();updateWorldStatus();renderLibrary();updateStats();paint();void hydrateStorage();
 
 </script><script>
 'use strict';
@@ -377,7 +478,7 @@ const GROUND_PACK=[{"id":"ground_meadow_grass","name":"Meadow Grass","solid":fal
 
 const p={size:32,kind:'tile',id:'',pixels:new Uint8ClampedArray(32*32*4),tool:'pencil',color:'#86b879',undo:[],redo:[],grid:true,drawing:false,last:null,start:null,base:null};
 const ed=$('pixelCanvas'),ec=ed.getContext('2d',{willReadFrequently:true}),scratch=document.createElement('canvas'),sc=scratch.getContext('2d',{willReadFrequently:true});
-function switchWorkspace(name){const studio=name==='studio';document.querySelector('.kitbar').hidden=studio;$('mapWorkspace').hidden=studio;$('studioWorkspace').hidden=!studio;$('workspaceStudio').classList.toggle('active',studio);$('workspaceMap').classList.toggle('active',!studio);$('workspaceStudio').setAttribute('aria-pressed',String(studio));$('workspaceMap').setAttribute('aria-pressed',String(!studio));if(studio){renderPainter();renderAssetLibrary()}else{zoom(s.zoom);paint()}window.scrollTo({top:0,behavior:'instant'})}
+function switchWorkspace(name){const studio=name==='studio';document.querySelector('.kitbar').hidden=studio;$('mapWorkspace').hidden=studio;$('studioWorkspace').hidden=!studio;$('workspaceStudio').classList.toggle('active',studio);$('workspaceMap').classList.toggle('active',!studio);$('workspaceStudio').setAttribute('aria-pressed',String(studio));$('workspaceMap').setAttribute('aria-pressed',String(!studio));if(studio){renderPainter();renderAssetLibrary()}else{if(fitActive)fitMap();else zoom(s.zoom);paint()}window.scrollTo({top:0,behavior:'instant'})}
 $('workspaceMap').onclick=()=>switchWorkspace('map');$('workspaceStudio').onclick=()=>switchWorkspace('studio');$('openStudioFromPlace').onclick=()=>switchWorkspace('studio');$('assetBackToMap').onclick=()=>switchWorkspace('map');
 function pixelSnapshot(){return new Uint8ClampedArray(p.pixels)}
 function pixelHistory(){p.undo.push(pixelSnapshot());if(p.undo.length>35)p.undo.shift();p.redo.length=0;pixelUndoUI()}
@@ -417,7 +518,7 @@ function saveAsset(){const oldId=p.id;const id=oldId||('a'+Date.now().toString(3
  p.id=id;s.customImages.delete('custom:'+id);
  if(previous>=0){s.objects=s.objects.map(o=>o.file==='custom:'+id?objectAt(o.file,o.footX,o.footY):o);updateStats()}
  void idbPut('art','library',s.customAssets).catch(e=>{toast('Asset storage is full. Export a project backup.');console.warn(e)})
- s.category='custom';refreshCustomControls();s.asset='custom:'+id;renderPalette();renderAssetLibrary();paint();persist();toast('Saved '+a.name+' — ready to use on your map');return a}
+ s.category='custom';refreshCustomControls();s.asset='custom:'+id;renderPalette();renderAssetLibrary();updateStats();paint();persist();toast('Saved '+a.name+' — ready to use on your map');return a}
 $('assetSave').onclick=saveAsset;
 function assetReset(){p.id='';p.kind=$('assetKind').value;p.size=p.kind==='tile'?32:+$('assetSize').value;newBuffer(p.size);$('assetName').value=p.kind==='tile'?'New Tile':'New Object';$('assetBlocks').checked=false;renderAssetLibrary()}
 $('assetNew').onclick=assetReset;

@@ -1,7 +1,7 @@
 {
   "name": "SpireWrought Map Forge",
   "short_name": "Map Forge",
-  "description": "Map Forge V2.2: original ground tiles, terrain blending, connected map cells, gameplay markers, collision painting, IndexedDB backups, and Unity map exports.",
+  "description": "Mobile map maker: variable-sized maps, full-map Fit, procedural forests and custom objects, drag/delete placements, terrain, collision and Unity export.",
   "id": "./index.html",
   "start_url": "./index.html",
   "scope": "./",
