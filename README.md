@@ -49,6 +49,28 @@ An effect with 8 frames becomes a **256×32 PNG** with frames ordered left to ri
 
 **Android updates:** Load the GitHub Pages URL in Chrome while online, refresh once, then reopen the installed app to pick up the V5.4 offline cache. Old projects remain importable.
 
+## Map Forge (V5.5)
+
+Open **[Map Forge](https://bobuildington.github.io/SpriteForge/maps/)** inside the Sprite Forge app (Monsters · Effects · Maps).
+
+This dedicated forest map maker is built around the **Tiny Realms Forest Map Kit HTML v2.0** format, but it **does not include or redistribute any of the kit's licensed artwork**. The kit's licence permits use in finished commercial games, but prohibits republishing the raw assets in a public tool, template, or stock library.
+
+### Load the licensed kit on Android
+
+1. Keep your own original `TinyRealms_ForestMapKit_HTML_v2.0.zip` in your Android downloads.
+2. Open [Map Forge](https://bobuildington.github.io/SpriteForge/maps/) in Chrome or from the installed Sprite Forge PWA.
+3. Tap **Load kit ZIP** and select the ZIP from your phone. The browser reads its contents locally without uploading them.
+4. Optionally tap **Save offline** to store the ZIP in browser-managed storage (roughly 101 MB). This can fail if Android storage quota is low.
+5. Tap **Generate**. Choose the base ground, overlay, theme, density, and numeric seed.
+6. Use **Place** to select individual trees, bushes, rocks, logs and 19 other categories, then tap on the map. Use **Select**, **Pan**, and zoom controls for manual edits; toggle collision overlay.
+7. Use **Save / Export** for a Unity map ZIP, transparent objects PNG, collision PNG, composite map PNG, map.json, and editable Map Forge JSON. The local library can retain up to 20 map recipes.
+
+The exported `map.json` follows **forest-map-kit-map v2** with a 1254×1254 map, original ground filenames, source foot pivots, depth sort lines, object footprints, and overlay water metadata. Unity integration is still a separate step: bring the original licensed kit into your **private** Unity project and import or consume the exported JSON and pictures. The sample bundle README documents the data and import guidance.
+
+**Important scale note:** The kit targets character art around 63 pixels tall, while original SpireWrought sprites are 32×32. Adjust actor or map scale in Unity rather than assuming a 1:1 character size.
+
+A world-grid / multi-cell seamless travel importer is **not yet included**. You can generate and save individual map cells.
+
 ## Features
 
 - Seven editable monster starters (rat, slime, bat, goblin, skeleton, golem, spider)

@@ -1,7 +1,7 @@
 {
   "name": "SpireWrought Sprite Forge",
   "short_name": "Sprite Forge",
-  "description": "Mobile 32×32 pixel editor for directional monster sprites and animated spell, projectile, impact and aura effects with Unity exports.",
+  "description": "Mobile artwork studio for SpireWrought: 32×32 monsters, animated effects, and forest map generation with private local kit import and Unity exports.",
   "id": "./index.html",
   "start_url": "./index.html",
   "scope": "./",

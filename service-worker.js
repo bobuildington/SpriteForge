@@ -1,10 +1,13 @@
-/* SpireWrought Sprite Forge V5.4 offline app shell.
+/* SpireWrought Sprite Forge V5.5 Monsters, Effects and Maps offline app shell.
  * Installed Android app URL must be a persistent HTTPS host, never 127.0.0.1.
  */
-const CACHE = 'spirewrought-sprite-forge-v5.4-effects';
+const CACHE = 'spirewrought-sprite-forge-v5.5-maps';
 const PREFIX = 'spirewrought-sprite-forge-';
 const HOME = new URL('./index.html', self.registration.scope).href;
-const OPTIONAL = ['./manifest.webmanifest', './icon-192.png', './icon-512.png'];
+const MAP_HOME = new URL('./maps/index.html', self.registration.scope).href;
+const MAP_DIR_PATH = new URL('./maps/', self.registration.scope).pathname;
+const MAP_FILE_PATH = new URL('./maps/index.html', self.registration.scope).pathname;
+const OPTIONAL = ['./manifest.webmanifest', './icon-192.png', './icon-512.png', './maps/index.html'];
 
 self.addEventListener('install', event => {
   event.waitUntil((async () => {
@@ -43,11 +46,12 @@ self.addEventListener('fetch', event => {
   if (request.mode === 'navigate') {
     event.respondWith((async () => {
       const cache = await caches.open(CACHE);
-      const cached = await cache.match(HOME);
+      const target = url.pathname === MAP_DIR_PATH || url.pathname === MAP_FILE_PATH ? MAP_HOME : HOME;
+      const cached = await cache.match(target);
       if (cached) return cached;
       try {
         const network = await fetch(request);
-        if (network.ok) await cache.put(HOME, network.clone());
+        if (network.ok) await cache.put(target, network.clone());
         return network;
       } catch (err) {
         return new Response('<h2>Sprite Forge is not cached yet</h2><p>Connect to the GitHub Pages site once to finish offline setup.</p>',
