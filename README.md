@@ -2,6 +2,16 @@
 
 Map Forge is the map-only replacement for the older SpriteForge app. It combines a **Map Editor** with a touch-first **Tiles & Objects** pixel editor. Monster and spell-effect editors are no longer shown in this app.
 
+## V2.1: Ground tiles and editor fixes
+
+**24 original 32×32 ground tiles** are now integrated directly into the **Tiles & Objects** workspace. Tap **+ Add 24 tiles** to add them to your local library, edit them, and paint them onto maps. The **Tile pack ZIP** button downloads the individual PNGs. The pack includes grass, flowers, moss, dirt, gravel, sand, cobblestone, roads, snow, ice, water, marsh, and ash. Shallow and deep water default to blocking movement; other tiles default to walkable. The artwork was created independently and is not from the licensed Forest Kit.
+
+**Audited and fixed:** mobile swipe painting interpolates skipped cells; 32px tile stamps stay within the 1254px map bounds; redraws are serialized to avoid mixed images; walkable tiles can override a blocked terrain background in the collision mask; editing a saved object's size/collision updates its placed copies; blocking custom objects use the kit-compatible `standing` collision type; the Forest Kit toolbar hides while in the pixel editor; and the Android PWA worker uses network-first navigation with offline fallback.
+
+**Grid caveat:** 1254px is not divisible by 32. Tiles can be stamped on 39 complete cells per axis, leaving a 6px strip near the right and bottom edges. Use a repeating fill tile, which covers the full canvas, for seamless ground.
+
+**Verification:** tested original ZIP discovery (4 ground, 29 overlay, 259 object assets), generating 40 forest objects, loading 24 starter tiles, painting fast swipes, updating placed objects, restoring a map project, PNG/ZIP structure, and collision pixels. A Unity *runtime* importer is still not included.
+
 ## Use on Android
 
 Open **https://bobuildington.github.io/SpriteForge/** in Chrome, refresh online, and then use Chrome's **Install app** action. If an older Sprite Forge installation still loads the old interface, refresh the HTTPS page twice while connected and restart the installed app. The previous `/SpriteForge/maps/` URL redirects to the new home screen. The editor's code works offline after caching; the optional Forest Kit must be loaded from a local ZIP again or saved separately in browser storage.

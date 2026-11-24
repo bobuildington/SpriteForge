@@ -1,7 +1,7 @@
 {
   "name": "SpireWrought Map Forge",
   "short_name": "Map Forge",
-  "description": "Mobile map maker with forest generation and original tile and object pixel editor for SpireWrought.",
+  "description": "Offline-capable mobile map maker with 24 original ground tiles, map painting, object editing, local Forest Kit import, and Unity exports.",
   "id": "./index.html",
   "start_url": "./index.html",
   "scope": "./",
