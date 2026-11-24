@@ -1,7 +1,7 @@
 {
   "name": "SpireWrought Map Forge",
   "short_name": "Map Forge",
-  "description": "Offline-capable mobile map maker with 24 original ground tiles, map painting, object editing, local Forest Kit import, and Unity exports.",
+  "description": "Map Forge V2.2: original ground tiles, terrain blending, connected map cells, gameplay markers, collision painting, IndexedDB backups, and Unity map exports.",
   "id": "./index.html",
   "start_url": "./index.html",
   "scope": "./",

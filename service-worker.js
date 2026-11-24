@@ -1,5 +1,5 @@
-/* SpireWrought Map Forge V2.1 offline shell. Licensed Forest Kit is never cached here. */
-const CACHE='spirewrought-mapforge-v2.1-ground-tiles';
+/* SpireWrought Map Forge V2.2 offline shell. Licensed Forest Kit is never cached here. */
+const CACHE='spirewrought-mapforge-v2.2-world-markers-storage';
 const HOME=new URL('./index.html',self.registration.scope).href;
 const OPTIONAL=['./manifest.webmanifest','./icon-192.png','./icon-512.png'];
 self.addEventListener('install',event=>event.waitUntil((async()=>{

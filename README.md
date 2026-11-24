@@ -1,5 +1,23 @@
 # SpireWrought Map Forge
 
+## V2.2 — World cells, terrain blending, markers and Unity importer
+
+The v2.2 update adds all six requested improvements while keeping the original 24-tile pack, the optional locally loaded Forest Kit, and existing Map Forge project compatibility.
+
+1. **Smart terrain edges**: Enable **Smart tile edge blending** under Generate to blend borders between different painted 32×32 custom tiles. This changes the rendered pixels only; it does not rewrite tile IDs or collision. It does not yet produce rule-based animated shorelines.
+2. **Connected world cells**: Choose world X/Y and use the north/east/south/west buttons to save the current cell and open an adjacent cell. Each cell has its own placements, painted tiles, collision overrides and gameplay markers, stored in IndexedDB. **World JSON** exports/imports cell recipes; licensed kit art stays local.
+3. **Gameplay markers**: In Place, pick the **Marker** tool and marker type (player spawn, enemy spawn, loot, NPC, door, stairs, teleporter, interactable, checkpoint, boss, quest). Tap the map. Edit the label/target before placing and delete placed markers from the list. Markers are serialized in `map.json` and remain editor-only visual overlays (not baked into `map.png`).
+4. **Collision painting**: **Block**, **Walk** and **Clear paint** brush tools operate on a 32×32 grid. Overrides are applied after terrain/object blocking and included in `collision.png` and `map.json`. **Collision** toolbar switch previews blocked regions.
+5. **Native Unity import helper**: `Unity/Editor/MapForgeImporter.cs` and `Unity/Runtime/*.cs`. Copy both folders into the private SpireWrought Unity project and choose **Tools → SpireWrought → Import Map Forge ZIP**. The importer creates baked visual art, markers, object anchors, and approximately sampled 32px collision colliders. Requires game-side verification and refinement for live Y-sorting, exact polygon collision and procedural streaming.
+6. **More durable storage and backups**: IndexedDB stores active projects, saved map library, original art and world cells, alongside the existing private offline Forest Kit ZIP. Earlier localStorage projects and artwork are read for migration. **Full backup** exports active project, saved maps, artwork and world-cell recipes. Restore with **Open project**. Use JSON exports regularly; clearing browser data still removes locally stored projects.
+
+### V2.2 smoke test
+
+Tests using a phone-sized Chromium viewport covered marker placement, collision brush and Undo, two adjacent terrain tiles with an actual pixel-color change, world cell navigation and restoration (using a simulated IndexedDB store), full JSON backup restore, intact Unity ZIP output, and Forest Kit ZIP loading (4 ground tiles, 29 overlays, 259 objects). `Unity/Editor` C# code is **not** compiled against your game project by these browser tests.
+
+**Workflow limitation:** A connected world is a collection of separately exported editable cell recipes. The Unity ZIP importer currently imports **one** rendered map ZIP at a time; it does not implement loading or streaming multiple cells at runtime.
+
+
 Map Forge is the map-only replacement for the older SpriteForge app. It combines a **Map Editor** with a touch-first **Tiles & Objects** pixel editor. Monster and spell-effect editors are no longer shown in this app.
 
 ## V2.1: Ground tiles and editor fixes
