@@ -1,12 +1,13 @@
-/* SpireWrought Map Forge V2.4 offline shell. Licensed Forest Kit is never cached here. */
-const CACHE='spirewrought-mapforge-v2.4-world-grid';
+/* SpireWrought Map Forge V3.1 offline shell for Map Editor and World Grid.
+ * Licensed Forest Kit files are private browser storage, never cached by this worker. */
+const CACHE='spirewrought-mapforge-v3.1-desktop-world-plan';
 const HOME=new URL('./index.html',self.registration.scope).href;
 const WORLD=new URL('./world/index.html',self.registration.scope).href;
 const ROOT_PATH=new URL('./',self.registration.scope).pathname;
-const ROOT_FILE_PATH=new URL('./index.html',self.registration.scope).pathname;
 const WORLD_PATH=new URL('./world/',self.registration.scope).pathname;
 const WORLD_FILE_PATH=new URL('./world/index.html',self.registration.scope).pathname;
-const OPTIONAL=['./manifest.webmanifest','./icon-192.png','./icon-512.png','./world/index.html'];
+const ROOT_FILE_PATH=new URL('./index.html',self.registration.scope).pathname;
+const OPTIONAL=['./manifest.webmanifest','./icon-192.png','./icon-512.png', './world/index.html','./shared/world-planner.js'];
 self.addEventListener('install',event=>event.waitUntil((async()=>{
  const cache=await caches.open(CACHE);
  const response=await fetch(new Request(HOME,{cache:'reload'}));

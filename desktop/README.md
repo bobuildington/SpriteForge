@@ -1,67 +1,83 @@
-# SpireWrought Map Forge — Windows Desktop V3.0
+# SpireWrought Map Forge — Windows Desktop V3.1
 
-This is the **desktop-first** edition of Map Forge, built from the existing World Grid, Map Editor, and Tile & Object Studio.
+A **Windows-first desktop application** built from the existing Map Forge World Grid and Map/Tile/Object editors. This update changes how the editor runs and saves files; it **does not add another Unity importer** or change the separate SpireWrought game repository.
 
-**No changes were made to the separate SpireWrought Unity project or its Forest Kit importer.** Forest Kit World Grid ZIP exports retain the existing format.
+## Advanced World Planner (V3.1)
 
-## Download the Windows executable
+Open **World Grid → Advanced World Planner** or press **Ctrl+Shift+P** to prepare a deterministic region-wide plan. Choose a world seed, clustered biome regions, road-network density, a connecting river, and up to 12 settlements. Tap **Plan World** to view the design without altering saved map artwork. **Fill empty squares** creates only missing maps; **Regenerate unlocked** replaces unprotected squares after explicit confirmation. **Lock square** protects a completed area.
 
-Open [Windows builds](https://github.com/bobuildington/SpriteForge/actions/workflows/windows-desktop.yml), choose the newest **successful** run, and under **Artifacts** download **SpireWrought-Map-Forge-v3-Windows**. Extract the artifact ZIP to find the two Windows x64 executables:
+Planned routes have *matching endpoints* across neighboring 1254×1254 Forest Kit squares and are visible in the World Grid and individual Map Editor. Their placement reserves open corridors when generating trees and props. A `world-plan.json` and per-cell `planned-routes.png` are included in the World Grid ZIP alongside its original `forest-map-kit-world` v2 files. **These procedural roads/rivers are planning artwork**, not native original Forest Kit overlays: SpireWrought's existing importer ignores them unless they are baked or incorporated separately. Existing Unity import compatibility is preserved, and no changes to SpireWrought's repository were made.
 
-- `SpireWrought-Map-Forge-Setup-3.0.0-x64.exe` — installable app with desktop/Start shortcuts.
-- `SpireWrought-Map-Forge-Portable-3.0.0-x64.exe` — no installation required.
+Regeneration is seeded and reproducible for the same loaded kit and settings. Locked squares remain unchanged; changing the world plan around a locked map may leave an imperfect connection at that protected border. Use the preview to inspect those boundaries.
 
-These builds are unsigned. Windows SmartScreen may show an *Unknown publisher* warning; verify the GitHub Actions run and downloaded source before deciding whether to run the executable. If a build fails or has not completed, inspect that Actions run.
+## Download the Windows app
 
-## Run from source
+1. Open [Build Windows Map Forge Desktop](https://github.com/bobuildington/SpriteForge/actions/workflows/windows-desktop.yml).
+2. Open the newest **successful** run.
+3. Under **Artifacts**, download `SpireWrought-Map-Forge-v3-1-Windows`.
+4. Extract the artifact ZIP. It contains two `.exe` files:
+   - `SpireWrought-Map-Forge-Setup-3.1.0-x64.exe` — installer with a Start-menu and desktop shortcut.
+   - `SpireWrought-Map-Forge-Portable-3.1.0-x64.exe` — runs without installing.
+5. Open either `.exe`. Because these community-built executables are not code-signed, Windows SmartScreen may show an **Unknown publisher** warning. Verify the GitHub Actions run and download source before choosing to proceed.
 
-On Windows with Node.js 22 or later:
+These builds target **Windows x64**. The GitHub workflow generates the executables; they are not checked into git. If no successful build is listed yet, check the Actions run logs.
+
+## Source development
+
+Requires Node.js 22+ on Windows.
 
 ```powershell
 npm install
 npm start
 ```
 
-To create the installer and portable app yourself:
+For Windows installers and portable builds:
 
 ```powershell
 npm run check:desktop
 npm run pack:win
 ```
 
-`npm run prepare` uses the **current** `index.html` and `world/index.html` at the repository root and creates the desktop-specific `web/` directory. This keeps Forest Kit ZIP exporters and map tools aligned with the website. Generated `web/` is not committed.
+The `prepare` script copies the up-to-date Map Forge pages from the repository root to the packaged `web/` directory and adds the native save-bridge hooks. **Never edit the generated `web/` folder directly**. `web/` is excluded from git.
 
-## Desktop controls
+## Desktop tools
 
-The app opens in a large resizable window with dedicated **World Grid**, **Map Editor**, and **Tiles & Objects** sections, a wider editing canvas, native menus, keyboard shortcuts, and native Save/Open dialogs. The existing terrain generation, per-square thumbnails, object move/delete, custom tile groups, and Map Kit World ZIP export remain.
+- **World Grid:** full-size world overview with separately rendered 1254×1254 Forest Kit squares, individual previews, per-square generation, and compatible Forest Kit World ZIP exports.
+- **Map Editor:** generate/edit a map square, move/delete objects, paint collisions, place gameplay markers, adjust terrain, and undo changes.
+- **Tiles & Objects:** create and import 32×32 paint tiles and larger placeable PNG objects; customize groups and edit pixels.
+- **Native JSON files:** `Ctrl+S` saves the current map to disk. Further `Ctrl+S` overwrites the same file; `Ctrl+Shift+S` chooses another name. `Ctrl+Alt+S` saves a full backup of the current map, saved map library, custom art, and world cells.
+- **Native exports:** PNG, ZIP, and JSON exports open a Windows Save As dialog rather than silently downloading to a browser folder.
+- **Kit stays private:** use **Open Forest Kit** to choose your original licensed ZIP. Its artwork is not included in this repo or app installer. The editor can cache the kit in its local app profile using **Save offline**.
 
-| Keys | Result |
+### Shortcuts
+
+| Shortcut | Action |
 |---|---|
-| Ctrl+1 / Ctrl+2 / Ctrl+3 | World / Map / Tile-Object Studio |
-| Ctrl+K | Select original Forest Kit ZIP |
-| Ctrl+O | Open a `.json` Map Forge project or complete backup |
-| Ctrl+S | Save current map JSON to disk; subsequent saves reuse its path |
-| Ctrl+Shift+S | Save current map JSON under a new name |
-| Ctrl+Alt+S | Export an editable backup with saved maps, world cells, and custom art |
-| Ctrl+E | Open/export the Forest Kit World ZIP |
-| Ctrl+Z | Undo map edit |
-| Ctrl+0 | Fit map or world into view |
+| `Ctrl+Shift+P` | Plan World (from World Grid) |
+| `Ctrl+1` | World Grid |
+| `Ctrl+2` | Map Editor |
+| `Ctrl+3` | Tiles & Objects |
+| `Ctrl+O` | Open map project JSON |
+| `Ctrl+S` | Save map project JSON |
+| `Ctrl+Shift+S` | Save As |
+| `Ctrl+Alt+S` | Save full editable backup JSON |
+| `Ctrl+K` | Open original Forest Kit ZIP |
+| `Ctrl+E` | Export Forest Kit World ZIP from the World Grid |
+| `Ctrl+Z` | Undo map edit |
+| `Ctrl+0` | Fit view |
 
-PNG/ZIP/JSON exports from the existing editor open a Windows file-save dialog. Project files are stored on your disk; the application's **autosaves, thumbnails, and optional cached Forest Kit ZIP** also use a private local Electron profile (IndexedDB).
+The app stores autosaves, map thumbnails, and cached kit data inside **its local Electron profile** (IndexedDB), separate from Chrome's storage. Files from the earlier Android/browser app **do not automatically migrate**. Export a full backup from the old app and open that JSON in the Windows application.
 
-**Migration:** Desktop app storage and your old Android/Chrome storage are separate. Export the old **Full backup** JSON and open it in the Windows app; select the original Forest Kit ZIP if the imported project references its art.
+## Forest Kit compatibility
 
-## Forest Kit sizes and compatibility
+The World Grid still exports the kit's `forest-map-kit-world` format v2, including `world.json`, `overview.png`, and `cells/A1/map.json`, `cells/A1/collision.png`, etc. Each cell remains **1254×1254** pixels. The SpireWrought Unity importer you already have reads that format; it is not bundled or modified here.
 
-- Each original World Grid cell: **1254×1254 px**.
-- Original kit ground/overlay: **1254×1254 px**.
-- Optional custom paint tiles: **32×32 px**, with custom placeable objects of various sizes.
-- World Grid export: `forest-map-kit-world` version 2 with `world.json`, `overview.png`, and per-cell `map.json` and `collision.png`.
+Custom pixel-art assets can be used inside Map Forge and included in editable backups, but the unchanged game importer cannot read those custom assets in a Forest Kit World ZIP. Map Forge warns/refuses unsupported World Grid exports rather than silently dropping artwork.
 
-Your current Unity importer reads the original artwork from the licensed kit folder. It does **not** import custom art from a World Grid ZIP; the app continues to warn about unsupported exports rather than discard artwork silently.
+## Security and privacy
 
-## Security and limitations
+The Electron application uses a private `mapforge://` protocol, context isolation, a sandboxed renderer, disabled Node integration, restricted navigation, and narrow file-dialog IPC. It never uploads the licensed kit. No automatic updates, analytics, or network access to artwork are built in.
 
-Licensed kit artwork is **not shipped**, uploaded, or redistributed. Electron uses a restricted `mapforge://` protocol, sandboxed renderer, context isolation, no renderer Node.js integration, blocked external navigation, and file-dialog-only native access. No auto-update or telemetry is included.
+## Current scope / limits
 
-This release is the **desktop packaging and editing-workflow foundation**. It does not yet replace the procedural generator with a full biome/road/river algorithm, remove the custom-asset limit, or automatically integrate with Unity. Huge multi-square worlds can still need substantial memory. Native Windows behavior has not yet been tested on your personal PC.
+This is the **desktop conversion and workflow foundation**, now includes advanced biome and route planning, but not a native Unity pipeline. The Forest Kit map-square generator and object editor are preserved. Large 9×9 worlds still consume substantial RAM and disk space for previews and exports; the Windows build has not been tested on your specific PC.

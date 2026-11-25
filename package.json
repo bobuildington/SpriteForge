@@ -1,15 +1,15 @@
 {
   "name": "spirewrought-map-forge",
   "private": true,
-  "version": "3.0.0",
-  "description": "Windows desktop map and tile editor for SpireWrought",
+  "version": "3.1.0",
+  "description": "Windows world-grid map maker with connected biome, road, river and settlement planning",
   "main": "desktop/main.cjs",
   "license": "UNLICENSED",
   "scripts": {
-    "prepare": "node desktop/prepare.cjs",
     "start": "npm run prepare && electron .",
-    "check:desktop": "node --check desktop/main.cjs && node --check desktop/preload.cjs && node --check desktop/ui.js && node --check desktop/prepare.cjs",
-    "pack:win": "npm run prepare && electron-builder --win nsis portable --x64 --publish never"
+    "pack:win": "npm run prepare && electron-builder --win nsis portable --x64 --publish never",
+    "prepare": "node desktop/prepare.cjs",
+    "check:desktop": "node --check desktop/main.cjs && node --check desktop/preload.cjs && node --check desktop/ui.js && node --check desktop/prepare.cjs"
   },
   "devDependencies": {
     "electron": "45.5.0",
@@ -32,7 +32,8 @@
       "web/world/index.html",
       "web/icon-192.png",
       "web/icon-512.png",
-      "web/manifest.webmanifest"
+      "web/manifest.webmanifest",
+      "web/shared/world-planner.js"
     ],
     "win": {
       "target": [
