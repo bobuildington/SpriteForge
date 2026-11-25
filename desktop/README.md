@@ -81,3 +81,7 @@ The Electron application uses a private `mapforge://` protocol, context isolatio
 ## Current scope / limits
 
 This is the **desktop conversion and workflow foundation**, now includes advanced biome and route planning, but not a native Unity pipeline. The Forest Kit map-square generator and object editor are preserved. Large 9×9 worlds still consume substantial RAM and disk space for previews and exports; the Windows build has not been tested on your specific PC.
+
+## V3.2 editable terrain and village generation
+
+World Grid can independently enable or disable roads, rivers, villages, and buildings. Draw and erase paths or add/move/delete houses in Map Editor. The original Forest Kit ZIP format remains valid; extra transparent terrain artwork and editable metadata are exported under `extended/` for future Unity integration. No changes are made to the separate game repository.

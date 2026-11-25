@@ -1,15 +1,55 @@
-# SpireWrought Map Forge — Windows Desktop V3.1
+# SpireWrought Map Forge Desktop V3.2
 
-**Windows desktop is the primary development target.** The app retains the original Forest Kit generation and exports, plus a regional world planner for clustered biomes, linked roads/rivers, settlements, protected map squares, and deterministic regeneration. No Unity importer was added or changed.
+**Desktop-first Windows map editor** for the 1254×1254 squares used by the Tiny Realms Forest Map Kit. The full-size world grid previews individual maps with terrain and objects. The app includes the Map Editor and the Tiles & Objects pixel studio.
 
-**Download Windows builds:** [GitHub Actions](https://github.com/bobuildington/SpriteForge/actions/workflows/windows-desktop.yml). Choose the latest successful build and download the `SpireWrought-Map-Forge-v3-1-Windows` artifact (installer + portable EXE). Source archive available from repo checkout.
+**[Windows Desktop Builds](https://github.com/bobuildington/SpriteForge/actions/workflows/windows-desktop.yml)** · [Browser version](https://bobuildington.github.io/SpriteForge/) · [Importer extension handoff](docs/TERRAIN_EXPORT_V3_2.md)
 
-**Run from source:** install Node.js 22+, then `npm install` and `npm start`. `npm run pack:win` builds the Windows installer and portable app. `npm run check:desktop` checks the desktop source.
+## New in V3.2: optional roads, rivers, and villages
 
-**Desktop usage:** World Grid → **Advanced World Planner** (biome regions, roads, river, settlements) → **Plan World** → **Fill empty squares** or **Regenerate unlocked**. Lock finished squares before regeneration. Click a square to preview it and open its detailed 1254×1254 Map Editor. The existing **Tiles & Objects** editor remains available.
+Open **World Grid → Advanced World Planner**. Each option can be controlled independently:
 
-**Important export detail:** World ZIP keeps `forest-map-kit-world` version 2, `world.json`, individual `cells/A1/map.json`, `collision.png`, and `overview.png` so the existing SpireWrought importer still recognizes it. New route plans are additional `world-plan.json` and per-cell `planned-routes.png` files. The existing importer does **not** render those new roads/rivers. They are useful design assets for future map art work, not a claim of Unity rendering compatibility. Licensed Forest Kit images are loaded locally and never redistributed.
+- **Generate roads** — when unchecked, no main or local village roads are created; when checked, choose main road or connected road network.
+- **Generate river artwork** — creates an aligned river across map squares, or no river when unchecked.
+- **Generate villages / settlements** — generates settlement sites and clearings, or no settlement content when unchecked.
+- **Generate village buildings** — separate switch available when settlements are enabled. If unchecked, settlement markers remain, but the editor adds no houses or village clearing artwork.
+- **Village count** — sets how many settlements to plan when enabled. **Biome regions**, density and seed remain configurable.
 
-**Browser editor (legacy):** https://bobuildington.github.io/SpriteForge/ — the desktop source shares its map-editing logic and also receives new planner files at this URL.
+Select **Plan World** to review the proposal, then **Fill empty squares** or **Regenerate unlocked** to apply it. Locked squares are never overwritten automatically, including when generation options are disabled. Each square has its own reproducible plan and original kit artwork.
 
-See [desktop/README.md](desktop/README.md) for full details, Windows shortcuts, native saving, and build instructions.
+## Actual, editable terrain art
+
+Roads, rivers, village clearings and houses are now generated as *transparent artwork*, not merely the planning overlays used in V3.1. Each square's terrain is saved as editable path points and building records, with a 1254×1254 rendered preview.
+
+Select a square → **Open square** → **Map Editor → Place → Terrain & village artwork** to use:
+
+- Draw road / Draw river (mouse-drag, adjustable width)
+- Erase art (remove nearby paths or buildings)
+- Add house (choose hut, cottage, workshop or hall)
+- Move house (click and drag an existing house)
+- Delete house
+- Reset to generated terrain / Clear all terrain artwork
+
+Map editing uses normal Undo and preserves the terrain in project saves, cell saves and full backups. The current licensed Forest Kit assets remain untouched.
+
+## Exports and Codex compatibility
+
+The **Forest Kit World ZIP** still includes its original `world.json`, separate `cells/<cell>/map.json` and `collision.png`, and `overview.png`, matching the existing `ArenaMapKitImport` in SpireWrought.
+
+New original terrain artwork goes into an **optional, clearly separated `extended/` folder** per cell: transparent `terrain.png`, `roads.png`, `rivers.png`, `clearings.png`, `buildings.png` (only when relevant), and an editable `terrain-design.json`. The individual map ZIP includes similar layers. Read [TERRAIN_EXPORT_V3_2.md](docs/TERRAIN_EXPORT_V3_2.md) for Codex-facing schema and recommended rendering order.
+
+**The existing game importer ignores those additional layers.** They are not represented in current Unity scenes until Codex updates the importer separately. This repository update does **not** change the SpireWrought game repo. The legacy collision mask remains unchanged; road/river/building collision is not generated for gameplay yet.
+
+## Windows development
+
+```sh
+npm install
+npm run test:terrain
+npm run check:desktop
+npm run pack:win
+```
+
+Windows installers and portable executables are built in GitHub Actions from source changes. The original Forest Kit ZIP is never committed or included in an installer; users load their licensed copy from local disk. Source is bundled using Electron.
+
+## Stability
+
+The map and terrain source were browser-tested using original kit data (4 grounds, 29 overlays, 259 objects). Regression tests exercise optional generation switches, deterministic world plans, border alignment, drawing/moving houses, PNG exports, and ZIP structure. Windows packaging remains dependent on the hosted Windows build workflow; check the Actions result before treating an installer as ready.

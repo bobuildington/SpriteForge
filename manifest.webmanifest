@@ -1,7 +1,7 @@
 {
   "name": "SpireWrought Map Forge",
   "short_name": "Map Forge",
-  "description": "Android map creator with 1254px Forest Kit world cells, visual world grid, grouped custom tile/object imports, collision tools and Unity-ready world ZIP exports.",
+  "description": "Windows map maker with optional road, river and village generation and editable terrain art",
   "id": "./index.html",
   "start_url": "./index.html",
   "scope": "./",

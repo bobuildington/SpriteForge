@@ -32,12 +32,14 @@ jobs:
         run: npm install --no-audit --no-fund
       - name: Validate JavaScript
         run: npm run check:desktop
+      - name: Test optional terrain generation
+        run: npm run test:terrain
       - name: Build Windows installer and portable app
         run: npm run pack:win
       - name: Publish installer and portable build artifacts
         uses: actions/upload-artifact@v4
         with:
-          name: SpireWrought-Map-Forge-v3-1-Windows
+          name: SpireWrought-Map-Forge-v3-2-Windows
           path: |
             dist/*.exe
           if-no-files-found: error

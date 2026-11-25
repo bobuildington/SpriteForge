@@ -22,15 +22,15 @@ function pathCells(plan,start,end,seed){if(!start||!end)return[];const k=c=>coor
 function addPath(plan,coords,kind,seed){for(let i=1;i<coords.length;i++){const [x,y]=coords[i-1],[xx,yy]=coords[i];const d=xx>x?'E':xx<x?'W':yy>y?'S':'N';link(plan,x,y,d,kind,seed)}}
 function generate(options={},existing={}){
  const cols=clamp(Math.floor(+options.cols||5),1,12),rows=clamp(Math.floor(+options.rows||5),1,12),seed=(Number(options.seed)||412038)>>>0;
- const density=['off','main','network'].includes(options.roads)?options.roads:'main',river=!!options.river,settlements=clamp(Math.round(+options.settlements||0),0,12);
+ const density=!options.enableRoads?'off':(['off','main','network'].includes(options.roads)?options.roads:'main'),river=!!options.river,settlements=options.villages===false?0:clamp(Math.round(+options.settlements||0),0,12);
  const regionMode=['mixed','forest','wild'].includes(options.biomes)?options.biomes:'mixed';
- const plan={format:'spirewrought-world-plan',version:1,cols,rows,seed,roadsMode:density,riverEnabled:river,settlements,biomes:regionMode,cells:{}};
+ const plan={format:'spirewrought-world-plan',version:1,cols,rows,seed,roadsMode:density,roadsEnabled:density!=='off',riverEnabled:river,villagesEnabled:options.villages!==false,buildingsEnabled:options.buildings!==false,settlements,biomes:regionMode,cells:{}};
  const anchors=[...Array(regionMode==='forest'?2:Math.max(3,Math.ceil(cols*rows/12)))].map((_,i)=>({x:rand(seed,7,i)*cols,y:rand(seed,9,i)*rows,biome:(regionMode==='forest'?['forest','dense']:regionMode==='wild'?['dense','mystic','ruins','clearing','forest']:['forest','dense','clearing','mystic','ruins'])[i%(regionMode==='forest'?2:5)]}));
  for(let y=0;y<rows;y++)for(let x=0;x<cols;x++){
   const k=coord(x,y),old=existing?.cells?.[k];
   let biome='forest',best=Infinity;for(let i=0;i<anchors.length;i++){const anchor=anchors[i],dist=(x+.5-anchor.x)**2+(y+.5-anchor.y)**2+rand(seed,x,y,i)*1.9;if(dist<best){best=dist;biome=anchor.biome}}
   const locked=!!(old?.locked||options.locks?.[k]);
-  plan.cells[k]=locked&&old?{...old,locked:true,roads:{...(old.roads||{})},river:{...(old.river||{})}}:{biome,settlement:null,landmark:null,roads:{},river:{},locked};
+  plan.cells[k]=locked&&old?{...old,locked:true,roads:{...(old.roads||{})},river:{...(old.river||{})}}:{biome,settlement:null,landmark:null,roads:{},river:{},buildingsEnabled:plan.buildingsEnabled,roadsEnabled:plan.roadsEnabled,locked};
  }
  // Existing locked squares retain their already-authored exits. Adjacent unlocked
  // squares inherit matching endpoints, preventing an accidental border seam.
@@ -47,7 +47,7 @@ function generate(options={},existing={}){
  while(sites.length<settlements&&candidates.length){let best=null,bestScore=-Infinity;for(const c of candidates){const [x,y]=c,dist=sites.length?Math.min(...sites.map(z=>(z[0]-x)**2+(z[1]-y)**2)):((cols-1)/2-x)**2+((rows-1)/2-y)**2;
   const preferred=sites.length?dist:-dist,noise=rand(seed,x,y,55)*1.2;
   const biome=plan.cells[coord(x,y)].biome,score=preferred+noise+(biome==='clearing'?0.8:0);if(score>bestScore){bestScore=score;best=c}}
-  if(!best)break;sites.push(best);candidates.splice(candidates.findIndex(c=>c[0]===best[0]&&c[1]===best[1]),1);plan.cells[coord(...best)].settlement=sites.length===1?'village':'outpost';
+  if(!best)break;sites.push(best);candidates.splice(candidates.findIndex(c=>c[0]===best[0]&&c[1]===best[1]),1);plan.cells[coord(...best)].settlement=sites.length===1?'village':'outpost';plan.cells[coord(...best)].buildingsEnabled=plan.buildingsEnabled;
  }
  // Distinct landmark sites; no invented kit images are required to show these symbols.
  const numLandmarks=Math.min(6,Math.max(1,Math.round(cols*rows/10)));
