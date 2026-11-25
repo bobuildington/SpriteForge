@@ -75,7 +75,7 @@ function generate(options={},existing={}){
  plan.cells=sortedObject(plan.cells);return plan;
 }
 function endpoint(d,t,w,h){if(d==='N')return [t*w,0];if(d==='S')return[t*w,h];if(d==='E')return[w,t*h];return[0,t*h]}
-function pathways(ctx,feature,width,height,options={}){
+function pathways(feature,ctx,width,height,options={}){
  if(!feature)return;const routes=[['river','#294a50','#367f95','#77acb5',.072],['roads','#453e31','#967c57','#c5a778',.044]];
  for(const [kind,border,color,center,amount] of routes){const ends=Object.entries(feature[kind]||{}).filter(([d,t])=>DIRS[d]&&Number.isFinite(+t)).map(([d,t])=>endpoint(d,clamp(+t,.05,.95),width,height));if(!ends.length)continue;
   const hub=[width*.5,height*.5],pairs=ends.length===2?[[ends[0],ends[1]]]:ends.map(e=>[hub,e]);
