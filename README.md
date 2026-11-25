@@ -1,3 +1,13 @@
+# SpireWrought Map Forge — Windows Desktop V3.0
+
+**The desktop edition is the main new development target.** A Windows x64 installer and portable executable are built by GitHub Actions. Open [Windows Desktop Builds](https://github.com/bobuildington/SpriteForge/actions/workflows/windows-desktop.yml) and download the artifact from the newest successful run.
+
+[Desktop installation, shortcuts and build instructions](desktop/README.md)
+
+The **existing browser editor remains available** at https://bobuildington.github.io/SpriteForge/ as a legacy option. The desktop app uses the same Forest Kit world-square generator and World Grid ZIP format; it does **not** alter your separate SpireWrought Unity importer. Licensed Forest Kit images are not distributed in this repository.
+
+---
+
 # SpireWrought Map Forge V2.4 — Original World Grid
 
 A mobile-first forest map creator for SpireWrought, hosted on GitHub Pages at https://bobuildington.github.io/SpriteForge/.

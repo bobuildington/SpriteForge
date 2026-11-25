@@ -1,0 +1,55 @@
+{
+  "name": "spirewrought-map-forge",
+  "private": true,
+  "version": "3.0.0",
+  "description": "Windows desktop map and tile editor for SpireWrought",
+  "main": "desktop/main.cjs",
+  "license": "UNLICENSED",
+  "scripts": {
+    "prepare": "node desktop/prepare.cjs",
+    "start": "npm run prepare && electron .",
+    "check:desktop": "node --check desktop/main.cjs && node --check desktop/preload.cjs && node --check desktop/ui.js && node --check desktop/prepare.cjs",
+    "pack:win": "npm run prepare && electron-builder --win nsis portable --x64 --publish never"
+  },
+  "devDependencies": {
+    "electron": "45.5.0",
+    "electron-builder": "26.18.0"
+  },
+  "build": {
+    "appId": "com.spirewrought.mapforge",
+    "productName": "SpireWrought Map Forge",
+    "copyright": "Copyright 2026",
+    "directories": {
+      "output": "dist"
+    },
+    "asar": true,
+    "files": [
+      "package.json",
+      "desktop/main.cjs",
+      "desktop/preload.cjs",
+      "desktop/ui.js",
+      "web/index.html",
+      "web/world/index.html",
+      "web/icon-192.png",
+      "web/icon-512.png",
+      "web/manifest.webmanifest"
+    ],
+    "win": {
+      "target": [
+        "nsis",
+        "portable"
+      ],
+      "signAndEditExecutable": false
+    },
+    "nsis": {
+      "artifactName": "SpireWrought-Map-Forge-Setup-${version}-${arch}.${ext}",
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true
+    },
+    "portable": {
+      "artifactName": "SpireWrought-Map-Forge-Portable-${version}-${arch}.${ext}"
+    }
+  }
+}

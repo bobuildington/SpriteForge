@@ -1,0 +1,41 @@
+name: Build Windows Map Forge Desktop
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - package.json
+      - desktop/**
+      - index.html
+      - world/index.html
+      - icon-192.png
+      - icon-512.png
+      - manifest.webmanifest
+      - .github/workflows/windows-desktop.yml
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  windows:
+    runs-on: windows-latest
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install desktop dependencies
+        run: npm install --no-audit --no-fund
+      - name: Check desktop JavaScript
+        run: npm run check:desktop
+      - name: Build Windows installer and portable executable
+        run: npm run pack:win
+      - name: Upload installer and portable app
+        uses: actions/upload-artifact@v4
+        with:
+          name: SpireWrought-Map-Forge-v3-Windows
+          path: dist/*.exe
+          if-no-files-found: error
+          retention-days: 90
